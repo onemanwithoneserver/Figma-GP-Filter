@@ -55,32 +55,32 @@ export default function MapSection({ results }) {
   )
 
   return (
-    <div className="h-full rounded-[7px] border border-[var(--dark)]/15 bg-[var(--white)] p-3">
+    <div className="flex h-full flex-col rounded-[7px] border border-[var(--dark)]/15 bg-[var(--white)] p-3">
       <div className="mb-2 flex items-center justify-between">
         <div className="text-sm font-semibold text-[var(--dark)]">Map View</div>
         <div className="text-xs text-[var(--dark)]/70">Drag & zoom enabled</div>
       </div>
 
-      <div className="mb-3">
+      <div className="mb-3 flex-1">
         <PropertyMap properties={properties} height={360} enableClustering={false} />
       </div>
 
-      <div className="flex items-center justify-end gap-2">
+      <div className="mt-auto flex flex-wrap items-center justify-end gap-2">
         <button
           type="button"
-          className="rounded-[5px] border border-[var(--dark)]/25 px-3 py-2 text-sm font-semibold text-[var(--dark)]"
+          className="rounded-[7px] border border-[var(--dark)]/25 px-2.5 py-2 text-sm font-semibold text-[var(--dark)] sm:px-3"
         >
           Clear All
         </button>
         <button
           type="button"
-          className="rounded-[5px] border border-[var(--dark)]/30 bg-[var(--white)] px-3 py-2 text-sm font-semibold text-[var(--dark)]"
+          className="rounded-[7px] border border-[var(--dark)]/30 bg-[var(--white)] px-2.5 py-2 text-sm font-semibold text-[var(--dark)] sm:px-3"
         >
           Save Search
         </button>
         <button
           type="button"
-          className="rounded-[5px] bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--white)]"
+          className="rounded-[7px] bg-[var(--primary)] px-3 py-2 text-sm font-semibold text-[var(--white)] sm:px-4"
         >
           Show Properties
         </button>

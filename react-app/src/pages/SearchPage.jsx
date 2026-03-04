@@ -358,15 +358,13 @@ export default function SearchPage() {
             : 'border-(--dark)/20'
         }`}
       >
-        <div className="mb-3 text-sm font-semibold uppercase tracking-wide text-(--dark)">{mode} preview</div>
-
         <div
           className={`${viewportShellClass} flex gap-3 ${desktopLayout ? 'flex-row' : 'flex-col'}`}
         >
           {showModeFilters ? (
             <aside
               className={`rounded-[7px] border border-(--dark)/15 bg-(--white) p-3 ${
-                desktopLayout ? 'w-3/5' : 'w-full'
+                desktopLayout ? 'w-4/5' : 'w-full'
               }`}
             >
               <div className="mb-3 flex flex-wrap gap-2">
@@ -404,12 +402,12 @@ export default function SearchPage() {
             </aside>
           )}
 
-          <section className={`flex gap-3 ${desktopLayout ? 'w-2/5 flex-col' : 'w-full flex-col'}`}>
-            <div className={desktopLayout ? 'h-[280px]' : mode === 'tablet' ? 'h-[280px]' : 'h-[260px]'}>
+          <section className={`flex gap-3 ${desktopLayout ? 'w-1/5 flex-col' : 'w-full flex-col'}`}>
+            <div className={desktopLayout ? 'h-[220px]' : mode === 'tablet' ? 'h-[210px]' : 'h-[170px]'}>
               <ResultsSection results={filteredResults} />
             </div>
 
-            <div className={desktopLayout ? 'min-h-[420px]' : mode === 'tablet' ? 'min-h-[460px]' : 'min-h-[500px]'}>
+            <div className={desktopLayout ? 'min-h-[480px]' : mode === 'tablet' ? 'min-h-[540px]' : 'min-h-[620px]'}>
               <MapSection results={filteredResults} />
             </div>
           </section>
