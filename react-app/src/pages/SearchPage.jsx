@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { BedDouble, Building2, House, LandPlot } from 'lucide-react'
 import FlatsFilters from '../components/Flats/FlatsFilters'
 import PlotsFilters from '../components/Plots/PlotsFilters'
 import SkyVillasFilters from '../components/SkyVillas/SkyVillasFilters'
@@ -16,11 +17,18 @@ const FILTER_COMPONENTS = {
 
 const PROPERTY_TYPES = Object.keys(FILTER_COMPONENTS)
 
+const PROPERTY_TYPE_ICONS = {
+  Flats: Building2,
+  SkyVillas: BedDouble,
+  Villas: House,
+  Plots: LandPlot,
+}
+
 const SECTION_IDS = {
   Flats: ['radius', 'unitSize', 'budget', 'projectType', 'projectStatus', 'specialOffers'],
   SkyVillas: ['radius', 'unitSize', 'budget', 'projectType', 'projectStatus', 'specialOffers'],
   Villas: ['radius', 'unitSize', 'budget', 'projectType', 'projectStatus', 'specialOffers'],
-  Plots: ['radius', 'plotSize', 'budget', 'projectType', 'approvals', 'finalPermission', 'plotType', 'speciality'],
+  Plots: ['radius', 'plotSize', 'budget', 'projectType', 'approvals', 'plotType', 'speciality'],
 }
 
 const createFilterState = () => ({
@@ -29,8 +37,18 @@ const createFilterState = () => ({
   budgetMin: '',
   budgetMax: '',
   unitSizes: [],
+  unitAreaMin: '',
+  unitAreaMax: '',
+  villasPlotMin: '',
+  villasPlotMax: '',
+  villasBuiltupMin: '',
+  villasBuiltupMax: '',
+  plotsPlotMin: '',
+  plotsPlotMax: '',
+  orrDistance: '',
   projectTypes: [],
   projectStatuses: [],
+  propertyAges: [],
   specialOffers: [],
   plotSizes: [],
   approvals: [],
@@ -57,9 +75,10 @@ const PROJECTS = [
     location: 'Madhapur',
     projectType: 'Semi Gated',
     projectStatus: 'Ready to Move',
+    propertyAge: 'New Properties',
     unitSize: '3BHK',
     specialOffers: ['Rental Offer', 'Pre-EMI'],
-    perBudget: 45,
+    perBudget: 9800,
     overallBudget: 85,
     distance: 4,
     priceRange: '₹ 78L - ₹ 1.2Cr',
@@ -72,11 +91,12 @@ const PROJECTS = [
     lng: 78.3406,
     name: 'Skyline Heights',
     location: 'Kokapet',
-    projectType: 'High Rise',
+    projectType: 'Hi-Rise (15 to 24 Floors)',
     projectStatus: '6-12 Months',
+    propertyAge: 'New Projects',
     unitSize: '2.5BHK',
     specialOffers: ['50:50', 'NO GST'],
-    perBudget: 55,
+    perBudget: 11200,
     overallBudget: 95,
     distance: 9,
     priceRange: '₹ 90L - ₹ 1.4Cr',
@@ -89,12 +109,13 @@ const PROJECTS = [
     lng: 78.3432,
     name: 'Cloud Crest Sky Villas',
     location: 'Financial District',
-    projectType: 'Sky Scrapers',
+    projectType: 'Sky Scrappers (G+40 Floors)',
     projectStatus: '<6 Months',
+    propertyAge: 'New Projects',
     unitSize: '4BHK',
     specialOffers: ['Low Downpayment', 'Freebies (Kitchen, ACs)'],
-    perBudget: 75,
-    overallBudget: 100,
+    perBudget: 21000,
+    overallBudget: 320,
     distance: 6,
     priceRange: '₹ 2.8Cr - ₹ 4.1Cr',
     highlights: ['Private deck', 'Sky lounge'],
@@ -106,12 +127,13 @@ const PROJECTS = [
     lng: 78.3618,
     name: 'Aero Signature',
     location: 'Narsingi',
-    projectType: 'Fully Gated',
+    projectType: 'Fully Gated (Upto 5 Floors)',
     projectStatus: '13-18 Months',
+    propertyAge: 'New Properties',
     unitSize: '5BHK',
     specialOffers: ['One Time Payment'],
-    perBudget: 68,
-    overallBudget: 90,
+    perBudget: 18500,
+    overallBudget: 280,
     distance: 14,
     priceRange: '₹ 2.4Cr - ₹ 3.6Cr',
     highlights: ['Concierge', 'Rooftop pool'],
@@ -123,12 +145,13 @@ const PROJECTS = [
     lng: 78.4813,
     name: 'Olive Garden Villas',
     location: 'Kompally',
-    projectType: 'Fully Gated',
+    projectType: 'Fully Gated (Upto 5 Floors)',
     projectStatus: 'Ready to Move',
+    propertyAge: 'Used Properties',
     unitSize: '4BHK',
     specialOffers: ['Pre-EMI', 'Low Downpayment'],
-    perBudget: 52,
-    overallBudget: 88,
+    perBudget: 12800,
+    overallBudget: 210,
     distance: 18,
     priceRange: '₹ 1.9Cr - ₹ 2.7Cr',
     highlights: ['Corner villa', 'EV charging'],
@@ -140,12 +163,13 @@ const PROJECTS = [
     lng: 78.3056,
     name: 'Prime Grove',
     location: 'Tellapur',
-    projectType: 'Standalone',
+    projectType: 'Stand alone',
     projectStatus: '19-24 Months',
+    propertyAge: 'New Properties',
     unitSize: '3BHK',
     specialOffers: ['Others'],
-    perBudget: 47,
-    overallBudget: 80,
+    perBudget: 10600,
+    overallBudget: 165,
     distance: 11,
     priceRange: '₹ 1.5Cr - ₹ 2.2Cr',
     highlights: ['Low density', 'Landscaped greens'],
@@ -162,9 +186,10 @@ const PROJECTS = [
     finalPermission: 'Received',
     plotType: 'Ready for Construction',
     saleType: 'Direct Sale',
+    orrDistance: '20-30 Km',
     plotSize: '240 Sq.Yd',
     specialityProjects: ['Villa Plots'],
-    perBudget: 30,
+    perBudget: 18000,
     overallBudget: 70,
     distance: 22,
     priceRange: '₹ 42L - ₹ 75L',
@@ -182,9 +207,10 @@ const PROJECTS = [
     finalPermission: 'Not Received',
     plotType: 'Long Term Investment',
     saleType: 'Resale',
+    orrDistance: '30+ Km',
     plotSize: '300 Sq.Yd+',
     specialityProjects: ['Organic Farming', 'Plantation'],
-    perBudget: 20,
+    perBudget: 12000,
     overallBudget: 55,
     distance: 27,
     priceRange: '₹ 28L - ₹ 60L',
@@ -306,6 +332,7 @@ export default function SearchPage() {
         matchesArray(state.unitSizes, project.unitSize) &&
         matchesArray(state.projectTypes, project.projectType) &&
         matchesArray(state.projectStatuses, project.projectStatus) &&
+        matchesArray(state.propertyAges, project.propertyAge) &&
         matchesArray(state.specialOffers, project.specialOffers)
       )
     })
@@ -325,38 +352,43 @@ export default function SearchPage() {
       <section
         key={mode}
         id={`preview-${mode}`}
-        className={`rounded-[7px] border bg-[var(--white)] p-3 transition-all ${
+        className={`rounded-[7px] border bg-(--white) p-3 transition-all ${
           previewMode === mode
-            ? 'border-[var(--primary)] ring-2 ring-[var(--primary)]/20'
-            : 'border-[var(--dark)]/20'
+            ? 'border-(--primary) ring-2 ring-(--primary)/20'
+            : 'border-(--dark)/20'
         }`}
       >
-        <div className="mb-3 text-sm font-semibold uppercase tracking-wide text-[var(--dark)]">{mode} preview</div>
+        <div className="mb-3 text-sm font-semibold uppercase tracking-wide text-(--dark)">{mode} preview</div>
 
         <div
           className={`${viewportShellClass} flex gap-3 ${desktopLayout ? 'flex-row' : 'flex-col'}`}
         >
           {showModeFilters ? (
             <aside
-              className={`rounded-[7px] border border-[var(--dark)]/15 bg-[var(--white)] p-3 ${
+              className={`rounded-[7px] border border-(--dark)/15 bg-(--white) p-3 ${
                 desktopLayout ? 'w-3/5' : 'w-full'
               }`}
             >
               <div className="mb-3 flex flex-wrap gap-2">
-                {PROPERTY_TYPES.map((type) => (
-                  <button
-                    key={`${mode}-${type}`}
-                    type="button"
-                    onClick={() => setActiveType(type)}
-                    className={`rounded-[5px] border px-3 py-2 text-xs font-semibold ${
-                      activeType === type
-                        ? 'border-[var(--primary)] bg-[var(--primary)] text-[var(--white)]'
-                        : 'border-[var(--dark)]/20 bg-[var(--white)] text-[var(--dark)]'
-                    }`}
-                  >
-                    {type}
-                  </button>
-                ))}
+                {PROPERTY_TYPES.map((type) => {
+                  const TypeIcon = PROPERTY_TYPE_ICONS[type]
+
+                  return (
+                    <button
+                      key={`${mode}-${type}`}
+                      type="button"
+                      onClick={() => setActiveType(type)}
+                      className={`inline-flex items-center gap-1.5 rounded-[7px] border px-3 py-2 text-xs font-semibold ${
+                        activeType === type
+                          ? 'border-(--primary) bg-(--primary) text-(--white)'
+                          : 'border-(--dark)/20 bg-(--white) text-(--dark)'
+                      }`}
+                    >
+                      {TypeIcon ? <TypeIcon size={14} /> : null}
+                      {type}
+                    </button>
+                  )
+                })}
               </div>
 
               <ActiveFilters
@@ -367,7 +399,7 @@ export default function SearchPage() {
               />
             </aside>
           ) : (
-            <aside className="rounded-[7px] border border-dashed border-[var(--dark)]/20 bg-[var(--bg)] p-4 text-sm text-[var(--dark)]/80">
+            <aside className="rounded-[7px] border border-dashed border-(--dark)/20 bg-(--bg) p-4 text-sm text-[var(--dark)]/80">
               Filters are collapsed for mobile preview. Use the filter icon above to open.
             </aside>
           )}
@@ -387,7 +419,7 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-(--bg)">
       <TopControls
         previewMode={previewMode}
         onPreviewModeChange={setPreviewMode}
@@ -396,7 +428,7 @@ export default function SearchPage() {
         }
       />
 
-      <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-4 p-3 pb-8">
+      <div className="mx-auto flex w-full max-w-400 flex-col gap-4 p-3 pb-8">
         {renderPreview(previewMode)}
       </div>
     </div>

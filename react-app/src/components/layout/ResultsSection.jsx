@@ -15,17 +15,7 @@ export default function ResultsSection({ results }) {
         <p className="mt-1 text-2xl font-semibold text-[var(--dark)]">Projects</p>
       </div>
 
-      <div className="p-3">
-        <div className="rounded-[5px] border border-[var(--dark)]/10 bg-[var(--white)] p-4">
-          <p className="mb-2 text-lg font-semibold text-[var(--dark)]">💡 Refine Your Search</p>
-          <div className="grid grid-cols-1 gap-1 text-sm text-[var(--dark)] sm:grid-cols-2">
-            <p>📍 Adjust location radius</p>
-            <p>🏘️ Change property type</p>
-            <p>💰 Modify budget range</p>
-            <p>⭐ Check special offers</p>
-          </div>
-        </div>
-      </div>
+
     </div>
   )
 }
