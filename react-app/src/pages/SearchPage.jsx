@@ -3,7 +3,6 @@ import { BedDouble, Building2, House, LandPlot } from 'lucide-react'
 import FlatsFilters from '../components/Flats/FlatsFilters'
 import PlotsFilters from '../components/Plots/PlotsFilters'
 import SkyVillasFilters from '../components/SkyVillas/SkyVillasFilters'
-import MapSection from '../components/layout/MapSection'
 import ResultsSection from '../components/layout/ResultsSection'
 import TopControls from '../components/layout/TopControls'
 import VillasFilters from '../components/Villas/VillasFilters'
@@ -31,8 +30,8 @@ const SECTION_IDS = {
   Plots: ['radius', 'plotSize', 'budget', 'projectType', 'approvals', 'plotType', 'speciality'],
 }
 
-const createFilterState = () => ({
-  radius: 5,
+const createFilterState = (defaultRadius = 5) => ({
+  radius: defaultRadius,
   budgetMode: 'per',
   budgetMin: '',
   budgetMax: '',
@@ -59,10 +58,10 @@ const createFilterState = () => ({
 })
 
 const DEFAULT_FILTERS = {
-  Flats: createFilterState(),
-  SkyVillas: createFilterState(),
-  Villas: createFilterState(),
-  Plots: createFilterState(),
+  Flats: createFilterState(3),
+  SkyVillas: createFilterState(3),
+  Villas: createFilterState(10),
+  Plots: createFilterState(15),
 }
 
 const PROJECTS = [
@@ -339,93 +338,108 @@ export default function SearchPage() {
   }, [activeType, filters])
 
   const renderPreview = (mode) => {
-    const desktopLayout = mode === 'desktop'
     const showModeFilters = showFilters[mode]
     const viewportShellClass =
       mode === 'desktop'
         ? 'w-full max-w-[1400px]'
         : mode === 'tablet'
           ? 'mx-auto w-full max-w-[920px]'
-          : 'mx-auto w-full max-w-[430px]'
+          : 'mx-auto w-full max-w-[402px]'
 
     return (
       <section
         key={mode}
         id={`preview-${mode}`}
-        className={`mx-auto rounded-[7px] border bg-[#FFFFFF] p-4 shadow-sm transition-all duration-300 ${
+        className={`mx-auto rounded-[7px] border bg-white transition-all duration-200 ${
           previewMode === mode
-            ? 'border-[#322822]/20 shadow-md shadow-[#322822]/5 ring-1 ring-[#322822]/10'
-            : 'border-[#322822]/10 opacity-60 hover:opacity-100'
+            ? 'border-[#322822]/10 shadow-[0_1px_3px_rgba(50,40,34,0.06),0_1px_2px_rgba(50,40,34,0.04)]'
+            : 'border-[#322822]/5 opacity-50 hover:opacity-100'
         }`}
       >
-        <div
-          className={`${viewportShellClass} flex gap-5 ${desktopLayout ? 'flex-row' : 'flex-col'}`}
-        >
+        <div className={`${viewportShellClass} flex flex-col gap-1.5 p-2`}>
           {showModeFilters ? (
-            <aside
-              className={`flex flex-col gap-4 rounded-[7px] ${
-                desktopLayout ? 'w-5/7' : 'w-full'
-              }`}
-            >
-              {/* Individual Premium Property Type Tabs */}
-              <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col gap-1.5">
+              {/* Property Type Tabs + Results */}
+              <div className="flex items-end gap-1.5">
+                <div className="flex min-w-0 flex-1 items-end gap-1.5">
                 {PROPERTY_TYPES.map((type) => {
                   const TypeIcon = PROPERTY_TYPE_ICONS[type]
-                  const isActive = activeType === type;
+                  const isActive = activeType === type
 
                   return (
                     <button
                       key={`${mode}-${type}`}
                       type="button"
                       onClick={() => setActiveType(type)}
-                      className={`inline-flex items-center gap-2 rounded-[5px] px-5 py-2.5 text-sm font-semibold tracking-wide transition-all duration-200 ${
+                      className={`inline-flex shrink-0 flex-col items-center gap-1 rounded-[7px] px-3 py-[6px] text-[10px] font-semibold tracking-[-0.01em] transition-all duration-150 sm:px-4 sm:text-[11px] ${
                         isActive
-                          ? 'bg-[#E65100] text-[#FFFFFF] shadow-md shadow-[#E65100]/20'
-                          : 'bg-[#EAE3D7]/70 text-[#322822] hover:bg-[#EAE3D7]'
+                          ? 'border border-[#E65100]/20 bg-[#E65100]/[0.06] text-[#E65100] shadow-[0_1px_4px_rgba(230,81,0,0.08)]'
+                          : 'border border-transparent bg-[#F5F1EC]/50 text-[#322822]/50 hover:bg-[#F5F1EC] hover:text-[#322822]/70'
                       }`}
                     >
                       {TypeIcon && (
-                        <TypeIcon 
-                          size={16} 
-                          className={`transition-colors duration-200 ${isActive ? 'text-[#FFFFFF]' : 'text-[#E65100]'}`} 
+                        <TypeIcon
+                          size={18}
+                          strokeWidth={isActive ? 2 : 1.5}
+                          className={isActive ? 'text-[#E65100]' : 'text-[#322822]/40'}
                         />
                       )}
-                      {type}
+                      {type === 'SkyVillas' ? 'Sky Villas' : type}
                     </button>
                   )
                 })}
+                </div>
+
+                {/* Results count inline */}
+                <div className="shrink-0">
+                  <ResultsSection results={filteredResults} />
+                </div>
               </div>
 
+              {/* Filters */}
               <ActiveFilters
                 filterState={activeFilterState}
                 onUpdate={updateActiveFilter}
                 openSections={openSections[mode]}
                 onToggleSection={(id) => toggleSection(mode, id)}
+                isMobile={mode === 'mobile'}
               />
-            </aside>
+
+              {/* Action buttons */}
+              <div className="flex items-center gap-1.5 pt-[2px]">
+                <button
+                  type="button"
+                  className="rounded-[7px] px-3 py-[6px] text-[10.5px] font-semibold text-[#322822]/50 transition-all hover:text-[#322822]/80"
+                >
+                  Clear All
+                </button>
+                <button
+                  type="button"
+                  className="rounded-[7px] border border-[#322822]/10 bg-white px-3.5 py-[6px] text-[10.5px] font-semibold text-[#322822]/70 shadow-[0_1px_2px_rgba(50,40,34,0.03)] transition-all hover:border-[#322822]/15 hover:text-[#322822]"
+                >
+                  Save Search
+                </button>
+                <button
+                  type="button"
+                  className="ml-auto rounded-[7px] bg-[#E65100] px-5 py-[6px] text-[10.5px] font-bold text-white shadow-[0_1px_4px_rgba(230,81,0,0.2)] transition-all hover:bg-[#D84A00] active:scale-[0.97]"
+                >
+                  Show {filteredResults.length} Properties
+                </button>
+              </div>
+            </div>
           ) : (
-            <aside className="rounded-[7px] border border-dashed border-[#322822]/20 bg-[#EAE3D7]/20 p-5 text-center text-sm font-medium text-[#322822]/60">
-              Filters are collapsed for mobile preview. Use the filter icon above to open.
-            </aside>
+            <div className="rounded-[7px] border border-dashed border-[#322822]/8 bg-[#F5F1EC]/40 p-3 text-center text-[10.5px] font-medium text-[#322822]/40">
+              Filters collapsed — tap the filter icon to expand.
+            </div>
           )}
-
-          <section className={`flex gap-5 ${desktopLayout ? 'w-2/7 flex-col' : 'w-full flex-col'}`}>
-            <div className={`overflow-hidden rounded-[7px] ${desktopLayout ? 'h-[240px]' : mode === 'tablet' ? 'h-[220px]' : 'h-[180px]'}`}>
-              <ResultsSection results={filteredResults} />
-            </div>
-
-            <div className="overflow-hidden rounded-[7px]">
-              <MapSection results={filteredResults} />
-            </div>
-          </section>
         </div>
       </section>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#EAE3D7] font-sans text-[#322822]">
-      <div className="sticky top-0 z-50 border-b border-[#322822]/10 bg-[#FFFFFF]/80 backdrop-blur-md">
+    <div className="min-h-screen bg-[#F5F1EC] font-sans text-[#322822]">
+      <div className="sticky top-0 z-50 border-b border-[#322822]/6 bg-white/95 backdrop-blur-md">
         <TopControls
           previewMode={previewMode}
           onPreviewModeChange={setPreviewMode}
@@ -435,7 +449,7 @@ export default function SearchPage() {
         />
       </div>
 
-      <div className="mx-auto flex w-full flex-col gap-6 p-4 pb-12 sm:p-6 lg:p-8">
+      <div className="mx-auto flex w-full flex-col gap-2 p-2 pb-4">
         {renderPreview(previewMode)}
       </div>
     </div>

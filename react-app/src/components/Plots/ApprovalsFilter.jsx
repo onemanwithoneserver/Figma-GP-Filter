@@ -5,11 +5,11 @@ import { PLOT_APPROVAL_OPTIONS } from '../common/filterOptions'
 export default function ApprovalsFilter({ selected, onToggle }) {
   return (
     <div>
-      <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-[var(--dark)]/70">
-        <CheckCircle2 size={14} />
+      <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+        <CheckCircle2 size={10} />
         Approvals
       </div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1">
         {PLOT_APPROVAL_OPTIONS.map((approval) => (
           <TagButton
             key={approval}

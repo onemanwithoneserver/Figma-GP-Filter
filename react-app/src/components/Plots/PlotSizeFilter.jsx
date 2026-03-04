@@ -62,17 +62,17 @@ function OrrDistanceSelect({ value, onChange }) {
         ref={triggerRef}
         type="button"
         onClick={() => setOpen((previous) => !previous)}
-        className={`group flex w-full items-center justify-between rounded-[7px] border bg-[#FFFFFF] px-3 py-2 pr-10 text-sm font-medium shadow-[0_1px_3px_rgba(50,40,34,0.04)] outline-none transition-all duration-200 focus:ring-4 focus:ring-[#E65100]/10 ${
+        className={`group flex w-full items-center justify-between rounded-[7px] border bg-[#FFFFFF] px-2 py-[5px] pr-7 text-[10.5px] font-medium outline-none transition-all duration-150 focus:ring-2 focus:ring-[#E65100]/8 ${
           open
-            ? 'border-[#E65100]/60'
-            : 'border-[var(--dark)]/20 hover:border-[var(--dark)]/35 hover:shadow-[0_2px_8px_rgba(50,40,34,0.08)]'
+            ? 'border-[#E65100]/35 shadow-[0_0_0_3px_rgba(230,81,0,0.04)]'
+            : 'border-[var(--dark)]/8 shadow-[0_1px_2px_rgba(50,40,34,0.03)] hover:border-[var(--dark)]/15'
         }`}
       >
-        <span className={value ? 'text-[var(--dark)]' : 'text-[var(--dark)]/55'}>{selectedLabel}</span>
+        <span className={value ? 'text-[var(--dark)]' : 'text-[var(--dark)]/40'}>{selectedLabel}</span>
         <ChevronDown
-          size={16}
-          className={`pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 transition-all duration-200 ${
-            open ? 'rotate-180 text-[#E65100]' : 'text-[var(--dark)]/40 group-hover:text-[var(--dark)]/70'
+          size={12}
+          className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 transition-all duration-150 ${
+            open ? 'rotate-180 text-[#E65100]/60' : 'text-[var(--dark)]/30'
           }`}
         />
       </button>
@@ -86,22 +86,22 @@ function OrrDistanceSelect({ value, onChange }) {
             left: pos.left,
             width: pos.width,
           }}
-          className={`z-[9999] origin-top overflow-hidden rounded-[7px] border border-[var(--dark)]/15 bg-[#FFFFFF] shadow-xl shadow-[rgba(50,40,34,0.12)] transition-all duration-150 ${
+          className={`z-[9999] origin-top overflow-hidden rounded-[7px] border border-[var(--dark)]/8 bg-[#FFFFFF] shadow-[0_6px_20px_-4px_rgba(50,40,34,0.12),0_2px_6px_rgba(50,40,34,0.06)] transition-all duration-150 ${
             open ? 'scale-y-100 opacity-100' : 'pointer-events-none scale-y-95 opacity-0'
           }`}
         >
-          <ul className="max-h-56 overflow-y-auto py-1">
+          <ul className="max-h-44 overflow-y-auto py-0.5">
             <li>
               <button
                 type="button"
                 onClick={() => handleSelect('')}
-                className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors duration-150 ${
+                className={`flex w-full items-center gap-2 px-2.5 py-[5px] text-left text-[10.5px] transition-colors duration-100 ${
                   !value
-                    ? 'bg-[#E65100]/8 font-semibold text-[#E65100]'
-                    : 'text-[var(--dark)]/60 hover:bg-[#EAE3D7]/45'
+                    ? 'bg-[#E65100]/[0.04] font-semibold text-[#E65100]'
+                    : 'text-[var(--dark)]/40 hover:bg-[#F5F1EC]/60'
                 }`}
               >
-                <Check size={14} className={`shrink-0 ${!value ? 'opacity-100' : 'opacity-0'}`} />
+                <Check size={11} className={`shrink-0 ${!value ? 'opacity-100' : 'opacity-0'}`} />
                 Select
               </button>
             </li>
@@ -114,13 +114,13 @@ function OrrDistanceSelect({ value, onChange }) {
                   <button
                     type="button"
                     onClick={() => handleSelect(option)}
-                    className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors duration-150 ${
+                    className={`flex w-full items-center gap-2 px-2.5 py-[5px] text-left text-[10.5px] transition-colors duration-100 ${
                       isActive
-                        ? 'bg-[#E65100]/8 font-semibold text-[#E65100]'
-                        : 'text-[var(--dark)] hover:bg-[#EAE3D7]/45'
+                        ? 'bg-[#E65100]/[0.04] font-semibold text-[#E65100]'
+                        : 'text-[var(--dark)]/80 hover:bg-[#F5F1EC]/60'
                     }`}
                   >
-                    <Check size={14} className={`shrink-0 ${isActive ? 'opacity-100 text-[#E65100]' : 'opacity-0'}`} />
+                    <Check size={11} className={`shrink-0 ${isActive ? 'opacity-100 text-[#E65100]' : 'opacity-0'}`} />
                     {option}
                   </button>
                 </li>
@@ -143,37 +143,37 @@ export default function PlotSizeFilter({
   onOrrDistanceChange,
 }) {
   return (
-    <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-end">
+    <div className="grid gap-2 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-end">
       <div>
-        <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-[var(--dark)]/70">
-          <LandPlot size={14} />
+        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+          <LandPlot size={10} />
           Plot Size (Sq.Yd)
         </div>
         <input
           value={plotMin}
           onChange={(event) => onPlotMinChange(event.target.value)}
-          placeholder="Min (×50)"
-          className="w-full rounded-[7px] border border-[var(--dark)]/20 bg-[var(--white)] px-3 py-2 text-sm text-[var(--dark)] outline-none"
+          placeholder="Min"
+          className="w-full rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] shadow-[0_1px_2px_rgba(50,40,34,0.03)] outline-none placeholder:text-[var(--dark)]/30 focus:border-[#E65100]/35 focus:shadow-[0_0_0_3px_rgba(230,81,0,0.04)]"
         />
       </div>
 
-      <span className="hidden text-sm text-[var(--dark)]/50 lg:block">-</span>
+      <span className="hidden text-[10px] text-[var(--dark)]/20 lg:block">–</span>
 
       <div>
-        <div className="mb-2 text-xs font-semibold text-transparent">spacer</div>
+        <div className="mb-1 text-[10px] font-semibold text-transparent">spacer</div>
         <input
           value={plotMax}
           onChange={(event) => onPlotMaxChange(event.target.value)}
-          placeholder="Max (×50)"
-          className="w-full rounded-[7px] border border-[var(--dark)]/20 bg-[var(--white)] px-3 py-2 text-sm text-[var(--dark)] outline-none"
+          placeholder="Max"
+          className="w-full rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] shadow-[0_1px_2px_rgba(50,40,34,0.03)] outline-none placeholder:text-[var(--dark)]/30 focus:border-[#E65100]/35 focus:shadow-[0_0_0_3px_rgba(230,81,0,0.04)]"
         />
       </div>
 
-      <span className="hidden text-sm text-[var(--dark)]/50 lg:block">-</span>
+      <span className="hidden text-[10px] text-[var(--dark)]/20 lg:block">–</span>
 
       <div>
-        <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-[var(--dark)]/70">
-          <Route size={14} />
+        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+          <Route size={10} />
           Distance from ORR
         </div>
         <OrrDistanceSelect value={orrDistance} onChange={onOrrDistanceChange} />

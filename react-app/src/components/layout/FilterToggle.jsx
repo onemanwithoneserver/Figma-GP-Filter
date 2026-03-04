@@ -6,9 +6,9 @@ export default function FilterToggle({ onClick }) {
       type="button"
       onClick={onClick}
       aria-label="Toggle filters"
-      className="inline-flex h-10 w-10 items-center justify-center rounded-[5px] border border-[#E65100] bg-[#E65100] text-[#FFFFFF]"
+      className="inline-flex h-7 w-7 items-center justify-center rounded-[7px] bg-[#E65100] text-white shadow-[0_1px_4px_rgba(230,81,0,0.2)] transition-all duration-150 hover:bg-[#D84A00] active:scale-95"
     >
-      <SlidersHorizontal size={18} />
+      <SlidersHorizontal size={13} />
     </button>
   )
 }

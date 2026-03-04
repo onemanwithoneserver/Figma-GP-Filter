@@ -1,10 +1,10 @@
 import TagButton from '../common/TagButton'
-import { PROJECT_TYPE_OPTIONS } from '../common/filterOptions'
+import { VILLAS_PROJECT_TYPE_OPTIONS } from '../common/filterOptions'
 
 export default function ProjectTypeFilter({ selected, onToggle }) {
   return (
-    <div className="flex flex-wrap gap-2">
-      {PROJECT_TYPE_OPTIONS.map((type) => (
+    <div className="flex flex-wrap gap-1">
+      {VILLAS_PROJECT_TYPE_OPTIONS.map((type) => (
         <TagButton
           key={type}
           label={type}

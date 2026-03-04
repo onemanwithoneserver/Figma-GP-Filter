@@ -68,18 +68,18 @@ function StyledSelect({ value, onChange, placeholder, options }) {
         ref={triggerRef}
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className={`flex w-full items-center justify-between rounded-[5px] border bg-[#FFFFFF] px-3.5 py-2.5 text-[13px] font-medium shadow-sm transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#E65100]/10 ${
+        className={`flex w-full items-center justify-between rounded-[7px] border bg-[#FFFFFF] px-2 py-[5px] text-[10.5px] font-medium transition-all duration-150 focus:outline-none ${
           open
-            ? 'border-[#E65100]/50 shadow-md shadow-[#E65100]/5'
-            : 'border-[#322822]/10 hover:border-[#322822]/20 hover:shadow-md hover:shadow-[#322822]/5'
+            ? 'border-[#E65100]/35 shadow-[0_0_0_3px_rgba(230,81,0,0.04)]'
+            : 'border-[#322822]/8 shadow-[0_1px_2px_rgba(50,40,34,0.03)] hover:border-[#322822]/15'
         }`}
       >
-        <span className={selected ? 'text-[#322822]' : 'text-[#322822]/40'}>
+        <span className={selected ? 'text-[#322822]' : 'text-[#322822]/35'}>
           {selected ? selected.label : placeholder}
         </span>
         <ChevronDown
-          size={16}
-          className={`ml-2 shrink-0 text-[#322822]/40 transition-transform duration-300 ${open ? 'rotate-180 text-[#E65100]/70' : ''}`}
+          size={12}
+          className={`ml-1 shrink-0 transition-transform duration-150 ${open ? 'rotate-180 text-[#E65100]/60' : 'text-[#322822]/30'}`}
         />
       </button>
 
@@ -93,25 +93,25 @@ function StyledSelect({ value, onChange, placeholder, options }) {
             left: pos.left,
             width: pos.width,
           }}
-          className={`z-[9999] origin-top overflow-hidden rounded-[7px] border border-[#322822]/10 bg-[#FFFFFF] shadow-lg shadow-[#322822]/8 transition-all duration-200 ${
+          className={`z-[9999] origin-top overflow-hidden rounded-[7px] border border-[#322822]/8 bg-[#FFFFFF] shadow-[0_6px_20px_-4px_rgba(50,40,34,0.12),0_2px_6px_rgba(50,40,34,0.06)] transition-all duration-150 ${
             open
               ? 'scale-y-100 opacity-100'
               : 'pointer-events-none scale-y-95 opacity-0'
           }`}
         >
-          <ul className="max-h-48 overflow-y-auto py-1 scrollbar-thin">
+          <ul className="max-h-44 overflow-y-auto py-0.5">
             {/* Reset / placeholder option */}
             <li>
               <button
                 type="button"
                 onClick={() => handleSelect('')}
-                className={`flex w-full items-center gap-2.5 px-3.5 py-2 text-[13px] transition-colors duration-150 ${
+                className={`flex w-full items-center gap-2 px-2.5 py-[5px] text-[10.5px] transition-colors duration-100 ${
                   !value
-                    ? 'bg-[#E65100]/5 font-semibold text-[#E65100]'
-                    : 'text-[#322822]/40 hover:bg-[#EAE3D7]/40 hover:text-[#322822]/60'
+                    ? 'bg-[#E65100]/[0.04] font-semibold text-[#E65100]'
+                    : 'text-[#322822]/35 hover:bg-[#F5F1EC]/60 hover:text-[#322822]/60'
                 }`}
               >
-                <span className="w-3.5" />
+                <span className="w-3" />
                 {placeholder}
               </button>
             </li>
@@ -123,14 +123,14 @@ function StyledSelect({ value, onChange, placeholder, options }) {
                   <button
                     type="button"
                     onClick={() => handleSelect(option.value)}
-                    className={`flex w-full items-center gap-2.5 px-3.5 py-2 text-[13px] font-medium transition-colors duration-150 ${
+                    className={`flex w-full items-center gap-2 px-2.5 py-[5px] text-[10.5px] font-medium transition-colors duration-100 ${
                       isActive
-                        ? 'bg-[#E65100]/5 text-[#E65100]'
-                        : 'text-[#322822] hover:bg-[#EAE3D7]/40'
+                        ? 'bg-[#E65100]/[0.04] text-[#E65100]'
+                        : 'text-[#322822]/80 hover:bg-[#F5F1EC]/60'
                     }`}
                   >
                     <Check
-                      size={14}
+                      size={12}
                       className={`shrink-0 transition-opacity duration-150 ${isActive ? 'opacity-100 text-[#E65100]' : 'opacity-0'}`}
                     />
                     {option.label}
@@ -162,16 +162,16 @@ export default function BudgetFilter({
   const activeOptions = mode === 'overall' ? overallOptions ?? options : perOptions ?? options
 
   return (
-    <div className="pt-1">
-      {/* Premium Segmented Control */}
-      <div className="mb-4 inline-flex items-center gap-1 rounded-[7px] border border-[#322822]/10 bg-[#EAE3D7]/40 p-1 shadow-inner">
+    <div className="pt-0.5">
+      {/* Segmented Control */}
+      <div className="mb-2 inline-flex items-center gap-px rounded-[7px] border border-[#322822]/6 bg-[#F5F1EC]/60 p-[3px]">
         <button
           type="button"
           onClick={() => onModeChange('per')}
-          className={` rounded-[5px] px-4 py-1.5 text-[13px] font-semibold tracking-wide transition-all duration-300 ${
+          className={`rounded-[7px] px-2.5 py-[4px] text-[10.5px] font-semibold tracking-[-0.01em] transition-all duration-150 ${
             mode === 'per'
-              ? 'bg-[#FFFFFF] text-[#E65100] shadow-sm ring-1 ring-[#E65100]/20'
-              : 'text-[#322822]/60 hover:bg-[#322822]/5 hover:text-[#322822]'
+              ? 'bg-white text-[#E65100] shadow-[0_1px_3px_rgba(50,40,34,0.08)]'
+              : 'text-[#322822]/45 hover:text-[#322822]/70'
           }`}
         >
           {perLabel}
@@ -179,28 +179,25 @@ export default function BudgetFilter({
         <button
           type="button"
           onClick={() => onModeChange('overall')}
-          className={` rounded-[5px] px-4 py-1.5 text-[13px] font-semibold tracking-wide transition-all duration-300 ${
+          className={`rounded-[7px] px-2.5 py-[4px] text-[10.5px] font-semibold tracking-[-0.01em] transition-all duration-150 ${
             mode === 'overall'
-              ? 'bg-[#FFFFFF] text-[#E65100] shadow-sm ring-1 ring-[#E65100]/20'
-              : 'text-[#322822]/60 hover:bg-[#322822]/5 hover:text-[#322822]'
+              ? 'bg-white text-[#E65100] shadow-[0_1px_3px_rgba(50,40,34,0.08)]'
+              : 'text-[#322822]/45 hover:text-[#322822]/70'
           }`}
         >
           {overallLabel}
         </button>
       </div>
 
-      {/* Min/Max Inputs with Premium Spacing */}
-      <div className="flex items-center gap-3">
+      {/* Min/Max Inputs */}
+      <div className="flex items-center gap-1.5">
         <StyledSelect 
           value={min} 
           onChange={onMinChange} 
           placeholder="Min" 
           options={activeOptions} 
         />
-        
-        {/* Refined Separator */}
-        <div className="h-0.5 w-3 shrink-0 rounded-full bg-[#322822]/20"></div>
-        
+        <div className="h-px w-3 shrink-0 bg-[#322822]/10"></div>
         <StyledSelect 
           value={max} 
           onChange={onMaxChange} 

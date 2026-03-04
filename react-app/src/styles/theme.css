@@ -1,14 +1,185 @@
+/* ─── Premium Design System ─── */
 :root {
+  /* Core palette */
   --primary: #322822;
   --dark: #322822;
-  --bg: #EAE3D7;
+  --bg: #F5F1EC;
+  --bg-warm: #EAE3D7;
   --white: #FFFFFF;
+  --accent: #E65100;
+  --accent-light: #FF6D00;
+  --accent-hover: #D84A00;
+
+  /* Neutral scale */
+  --gray-50: #FAFAF8;
+  --gray-100: #F5F3F0;
+  --gray-200: #E8E4DF;
+  --gray-300: #D4CFC8;
+  --gray-400: #A9A29A;
+  --gray-500: #7A746D;
+  --gray-600: #5C564F;
+  --gray-700: #3E3832;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(50, 40, 34, 0.04);
+  --shadow-sm: 0 1px 3px rgba(50, 40, 34, 0.06), 0 1px 2px rgba(50, 40, 34, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(50, 40, 34, 0.06), 0 2px 4px -2px rgba(50, 40, 34, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(50, 40, 34, 0.06), 0 4px 6px -4px rgba(50, 40, 34, 0.04);
+  --shadow-dropdown: 0 6px 20px -4px rgba(50, 40, 34, 0.12), 0 2px 6px rgba(50, 40, 34, 0.06);
+
+  /* Transitions */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration: 200ms;
+  --duration-slow: 300ms;
+}
+
+/* ─── Global Reset & Base ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   margin: 0;
   background: var(--bg);
-  font-family: Inter, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--dark);
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Premium Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-300) transparent;
+}
+
+/* ─── Focus Styles ─── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-radius: 5px;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(230, 81, 0, 0.12);
+  color: var(--dark);
+}
+
+/* ─── Range Input ─── */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 5px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 6px;
+  background: var(--accent);
+  border: 2px solid var(--white);
+  box-shadow: 0 1px 4px rgba(230, 81, 0, 0.25);
+  margin-top: -6px;
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(230, 81, 0, 0.3);
+}
+
+input[type='range']:active::-webkit-slider-thumb {
+  transform: scale(0.95);
+}
+
+input[type='range']::-moz-range-track {
+  height: 4px;
+  border-radius: 5px;
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 6px;
+  background: var(--accent);
+  border: 2px solid var(--white);
+  box-shadow: 0 1px 4px rgba(230, 81, 0, 0.25);
+}
+
+/* ─── Input Focus ─── */
+input[type='text']:focus,
+input[type='number']:focus,
+select:focus {
+  border-color: rgba(230, 81, 0, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.06);
+}
+
+/* ─── Button Base ─── */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ─── Leaflet Overrides ─── */
+.leaflet-container {
+  font-family: inherit !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 6px !important;
+  box-shadow: var(--shadow-lg) !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 8px 12px !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-popup-tip {
+  box-shadow: none !important;
 }
 

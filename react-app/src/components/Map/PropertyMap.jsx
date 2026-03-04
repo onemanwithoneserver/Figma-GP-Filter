@@ -114,7 +114,7 @@ function PropertyMapBase({ properties = [], height = 430, enableClustering = tru
   )
 
   return (
-    <div className="overflow-hidden rounded-[7px] border border-[#322822]/10 bg-[#EAE3D7]/30 shadow-xl shadow-[#322822]/5 ring-1 ring-[#FFFFFF]/50">
+    <div className="overflow-hidden rounded-[7px] border border-[#322822]/8 bg-[#EAE3D7]/30 shadow-[0_4px_16px_-4px_rgba(50,40,34,0.08)] ring-1 ring-[#FFFFFF]/50">
       <MapContainer
         center={center}
         zoom={12}

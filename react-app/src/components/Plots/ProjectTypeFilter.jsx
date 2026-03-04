@@ -3,7 +3,7 @@ import { PLOT_PROJECT_TYPE_OPTIONS } from '../common/filterOptions'
 
 export default function ProjectTypeFilter({ selected, onToggle }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-1">
       {PLOT_PROJECT_TYPE_OPTIONS.map((type) => (
         <TagButton
           key={type}

@@ -8,7 +8,7 @@ const options = [
 
 export default function DeviceSwitcher({ value, onChange }) {
   return (
-    <div className="inline-flex items-center gap-1 rounded-[7px] border border-[#322822]/10 bg-[#EAE3D7]/40 p-1 shadow-inner">
+    <div className="inline-flex items-center gap-px rounded-[7px] border border-[#322822]/6 bg-[#F5F1EC]/60 p-[3px]">
       {options.map(({ key, label, icon: Icon }) => {
         const isActive = value === key;
         
@@ -17,16 +17,13 @@ export default function DeviceSwitcher({ value, onChange }) {
             key={key}
             type="button"
             onClick={() => onChange(key)}
-            className={`inline-flex items-center gap-2 rounded-[5px] px-3 py-1.5 text-sm font-medium transition-all duration-300 ${
+            className={`inline-flex items-center gap-1.5 rounded-[7px] px-2.5 py-[4px] text-[10.5px] font-medium tracking-[-0.01em] transition-all duration-150 ${
               isActive
-                ? 'bg-[#E65100]/10 text-[#E65100] shadow-sm ring-1 ring-[#E65100]/25'
-                : 'text-[#322822]/60 hover:bg-[#322822]/5 hover:text-[#322822]'
+                ? 'bg-white text-[#E65100] shadow-[0_1px_3px_rgba(50,40,34,0.08)]'
+                : 'text-[#322822]/40 hover:text-[#322822]/70'
             }`}
           >
-            <Icon
-              size={16}
-              className="text-[#E65100] transition-colors duration-300"
-            />
+            <Icon size={12} className={isActive ? 'text-[#E65100]' : 'text-[#322822]/30'} />
             {label}
           </button>
         );

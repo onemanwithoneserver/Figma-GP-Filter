@@ -5,12 +5,12 @@ import { PLOT_SALE_TYPE_OPTIONS, PLOT_TYPE_OPTIONS } from '../common/filterOptio
 export default function PlotTypeSaleFilter({ selectedType, selectedSaleType, onToggleType, onToggleSaleType }) {
   return (
     <>
-      <div className="mb-4">
-        <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-[var(--dark)]/70">
-          <Landmark size={14} />
+      <div className="mb-2">
+        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+          <Landmark size={10} />
           Plot Type
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1">
           {PLOT_TYPE_OPTIONS.map((type) => (
             <TagButton
               key={type}
@@ -23,11 +23,11 @@ export default function PlotTypeSaleFilter({ selectedType, selectedSaleType, onT
       </div>
 
       <div>
-        <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-[var(--dark)]/70">
-          <ReceiptText size={14} />
+        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+          <ReceiptText size={10} />
           Sale Type
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1">
           {PLOT_SALE_TYPE_OPTIONS.map((type) => (
             <TagButton
               key={type}

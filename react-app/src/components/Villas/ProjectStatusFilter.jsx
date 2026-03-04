@@ -4,48 +4,26 @@ import { PROJECT_STATUS_OPTIONS, PROPERTY_AGE_OPTIONS } from '../common/filterOp
 
 export default function ProjectStatusFilter({ selected, onToggle, propertyAges = [], onTogglePropertyAge }) {
   return (
-    <div className="flex flex-col gap-7 pt-1">
-      {/* Handover Timeline Section */}
-      <div className="flex flex-col gap-3.5">
-        {/* Section Header */}
-        <div className="flex items-center gap-2">
-          <TimerReset size={16} className="text-[#322822]/50" />
-          <span className="text-[13px] font-bold text-[#322822]/70">
-            Handover timeline
-          </span>
+    <div className="flex flex-col gap-2.5 pt-0.5">
+      <div className="flex flex-col gap-1">
+        <div className="flex items-center gap-1.5">
+          <TimerReset size={11} className="text-[#322822]/40" />
+          <span className="text-[10px] font-semibold tracking-wide text-[#322822]/60">Handover Timeline</span>
         </div>
-
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-1">
           {PROJECT_STATUS_OPTIONS.map((status) => (
-            <TagButton
-              key={status}
-              label={status}
-              selected={selected.includes(status)}
-              onClick={() => onToggle(status)}
-            />
+            <TagButton key={status} label={status} selected={selected.includes(status)} onClick={() => onToggle(status)} />
           ))}
         </div>
       </div>
-
-      {/* Property Age Section */}
-      <div className="flex flex-col gap-3.5">
-        {/* Section Header */}
-        <div className="flex items-center gap-2">
-          <CalendarClock size={16} className="text-[#322822]/50" />
-          <span className="text-[13px] font-bold text-[#322822]/70">
-            Property age
-          </span>
+      <div className="flex flex-col gap-1">
+        <div className="flex items-center gap-1.5">
+          <CalendarClock size={11} className="text-[#322822]/40" />
+          <span className="text-[10px] font-semibold tracking-wide text-[#322822]/60">Property Age</span>
         </div>
-
-        {/* Property Age Tags */}
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-1">
           {PROPERTY_AGE_OPTIONS.map((age) => (
-            <TagButton
-              key={age}
-              label={age}
-              selected={propertyAges.includes(age)}
-              onClick={() => onTogglePropertyAge(age)}
-            />
+            <TagButton key={age} label={age} selected={propertyAges.includes(age)} onClick={() => onTogglePropertyAge(age)} />
           ))}
         </div>
       </div>
