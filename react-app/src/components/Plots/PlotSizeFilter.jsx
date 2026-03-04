@@ -1,5 +1,138 @@
-import { LandPlot, Route } from 'lucide-react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { Check, ChevronDown, LandPlot, Route } from 'lucide-react'
 import { ORR_DISTANCE_OPTIONS } from '../common/filterOptions'
+
+function OrrDistanceSelect({ value, onChange }) {
+  const [open, setOpen] = useState(false)
+  const triggerRef = useRef(null)
+  const dropdownRef = useRef(null)
+  const [pos, setPos] = useState({ top: 0, left: 0, width: 0 })
+
+  const selectedLabel = value || 'Select'
+
+  const updatePosition = useCallback(() => {
+    if (!triggerRef.current) return
+
+    const rect = triggerRef.current.getBoundingClientRect()
+    setPos({
+      top: rect.bottom + 6,
+      left: rect.left,
+      width: rect.width,
+    })
+  }, [])
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        triggerRef.current &&
+        !triggerRef.current.contains(event.target) &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  useEffect(() => {
+    if (!open) return
+
+    updatePosition()
+    window.addEventListener('scroll', updatePosition, true)
+    window.addEventListener('resize', updatePosition)
+
+    return () => {
+      window.removeEventListener('scroll', updatePosition, true)
+      window.removeEventListener('resize', updatePosition)
+    }
+  }, [open, updatePosition])
+
+  function handleSelect(nextValue) {
+    onChange(nextValue)
+    setOpen(false)
+  }
+
+  return (
+    <div className="relative">
+      <button
+        ref={triggerRef}
+        type="button"
+        onClick={() => setOpen((previous) => !previous)}
+        className={`group flex w-full items-center justify-between rounded-[7px] border bg-[#FFFFFF] px-3 py-2 pr-10 text-sm font-medium shadow-[0_1px_3px_rgba(50,40,34,0.04)] outline-none transition-all duration-200 focus:ring-4 focus:ring-[#E65100]/10 ${
+          open
+            ? 'border-[#E65100]/60'
+            : 'border-[var(--dark)]/20 hover:border-[var(--dark)]/35 hover:shadow-[0_2px_8px_rgba(50,40,34,0.08)]'
+        }`}
+      >
+        <span className={value ? 'text-[var(--dark)]' : 'text-[var(--dark)]/55'}>{selectedLabel}</span>
+        <ChevronDown
+          size={16}
+          className={`pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 transition-all duration-200 ${
+            open ? 'rotate-180 text-[#E65100]' : 'text-[var(--dark)]/40 group-hover:text-[var(--dark)]/70'
+          }`}
+        />
+      </button>
+
+      {createPortal(
+        <div
+          ref={dropdownRef}
+          style={{
+            position: 'fixed',
+            top: pos.top,
+            left: pos.left,
+            width: pos.width,
+          }}
+          className={`z-[9999] origin-top overflow-hidden rounded-[7px] border border-[var(--dark)]/15 bg-[#FFFFFF] shadow-xl shadow-[rgba(50,40,34,0.12)] transition-all duration-150 ${
+            open ? 'scale-y-100 opacity-100' : 'pointer-events-none scale-y-95 opacity-0'
+          }`}
+        >
+          <ul className="max-h-56 overflow-y-auto py-1">
+            <li>
+              <button
+                type="button"
+                onClick={() => handleSelect('')}
+                className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors duration-150 ${
+                  !value
+                    ? 'bg-[#E65100]/8 font-semibold text-[#E65100]'
+                    : 'text-[var(--dark)]/60 hover:bg-[#EAE3D7]/45'
+                }`}
+              >
+                <Check size={14} className={`shrink-0 ${!value ? 'opacity-100' : 'opacity-0'}`} />
+                Select
+              </button>
+            </li>
+
+            {ORR_DISTANCE_OPTIONS.map((option) => {
+              const isActive = option === value
+
+              return (
+                <li key={option}>
+                  <button
+                    type="button"
+                    onClick={() => handleSelect(option)}
+                    className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors duration-150 ${
+                      isActive
+                        ? 'bg-[#E65100]/8 font-semibold text-[#E65100]'
+                        : 'text-[var(--dark)] hover:bg-[#EAE3D7]/45'
+                    }`}
+                  >
+                    <Check size={14} className={`shrink-0 ${isActive ? 'opacity-100 text-[#E65100]' : 'opacity-0'}`} />
+                    {option}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>,
+        document.body,
+      )}
+    </div>
+  )
+}
 
 export default function PlotSizeFilter({
   plotMin,
@@ -43,18 +176,7 @@ export default function PlotSizeFilter({
           <Route size={14} />
           Distance from ORR
         </div>
-        <select
-          value={orrDistance}
-          onChange={(event) => onOrrDistanceChange(event.target.value)}
-          className="w-full rounded-[7px] border border-[var(--dark)]/20 bg-[var(--white)] px-3 py-2 text-sm text-[var(--dark)] outline-none"
-        >
-          <option value="">Select</option>
-          {ORR_DISTANCE_OPTIONS.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
+        <OrrDistanceSelect value={orrDistance} onChange={onOrrDistanceChange} />
       </div>
     </div>
   )
