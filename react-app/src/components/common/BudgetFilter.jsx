@@ -70,16 +70,16 @@ function StyledSelect({ value, onChange, placeholder, options }) {
         onClick={() => setOpen((prev) => !prev)}
         className={`flex w-full items-center justify-between rounded-[7px] border bg-[#FFFFFF] px-2 py-[5px] text-[10.5px] font-medium transition-all duration-150 focus:outline-none ${
           open
-            ? 'border-[#E65100]/35 shadow-[0_0_0_3px_rgba(230,81,0,0.04)]'
-            : 'border-[#322822]/8 shadow-[0_1px_2px_rgba(50,40,34,0.03)] hover:border-[#322822]/15'
+            ? 'border-[#D94F00]/35 shadow-[0_0_0_3px_rgba(217,79,0,0.06)]'
+            : 'border-[#2A2118]/8 shadow-[0_1px_2px_rgba(42,33,24,0.04)] hover:border-[#2A2118]/15 hover:shadow-[0_1px_4px_rgba(42,33,24,0.07)]'
         }`}
       >
-        <span className={selected ? 'text-[#322822]' : 'text-[#322822]/35'}>
+        <span className={selected ? 'text-[#2A2118]' : 'text-[#2A2118]/30'}>
           {selected ? selected.label : placeholder}
         </span>
         <ChevronDown
           size={12}
-          className={`ml-1 shrink-0 transition-transform duration-150 ${open ? 'rotate-180 text-[#E65100]/60' : 'text-[#322822]/30'}`}
+          className={`ml-1 shrink-0 transition-transform duration-150 ${open ? 'rotate-180 text-[#D94F00]/60' : 'text-[#2A2118]/25'}`}
         />
       </button>
 
@@ -93,7 +93,7 @@ function StyledSelect({ value, onChange, placeholder, options }) {
             left: pos.left,
             width: pos.width,
           }}
-          className={`z-[9999] origin-top overflow-hidden rounded-[7px] border border-[#322822]/8 bg-[#FFFFFF] shadow-[0_6px_20px_-4px_rgba(50,40,34,0.12),0_2px_6px_rgba(50,40,34,0.06)] transition-all duration-150 ${
+          className={`z-[9999] origin-top overflow-hidden rounded-[7px] border border-[#2A2118]/8 bg-[#FFFFFF] shadow-[0_8px_24px_-4px_rgba(42,33,24,0.14),0_4px_8px_rgba(42,33,24,0.06)] transition-all duration-150 ${
             open
               ? 'scale-y-100 opacity-100'
               : 'pointer-events-none scale-y-95 opacity-0'
@@ -107,8 +107,8 @@ function StyledSelect({ value, onChange, placeholder, options }) {
                 onClick={() => handleSelect('')}
                 className={`flex w-full items-center gap-2 px-2.5 py-[5px] text-[10.5px] transition-colors duration-100 ${
                   !value
-                    ? 'bg-[#E65100]/[0.04] font-semibold text-[#E65100]'
-                    : 'text-[#322822]/35 hover:bg-[#F5F1EC]/60 hover:text-[#322822]/60'
+                    ? 'bg-[#D94F00]/[0.04] font-semibold text-[#D94F00]'
+                    : 'text-[#2A2118]/30 hover:bg-[#F7F4F0]/70 hover:text-[#2A2118]/55'
                 }`}
               >
                 <span className="w-3" />
@@ -125,13 +125,13 @@ function StyledSelect({ value, onChange, placeholder, options }) {
                     onClick={() => handleSelect(option.value)}
                     className={`flex w-full items-center gap-2 px-2.5 py-[5px] text-[10.5px] font-medium transition-colors duration-100 ${
                       isActive
-                        ? 'bg-[#E65100]/[0.04] text-[#E65100]'
-                        : 'text-[#322822]/80 hover:bg-[#F5F1EC]/60'
+                        ? 'bg-[#D94F00]/[0.05] text-[#D94F00]'
+                        : 'text-[#2A2118]/75 hover:bg-[#F7F4F0]/70'
                     }`}
                   >
                     <Check
                       size={12}
-                      className={`shrink-0 transition-opacity duration-150 ${isActive ? 'opacity-100 text-[#E65100]' : 'opacity-0'}`}
+                      className={`shrink-0 transition-opacity duration-150 ${isActive ? 'opacity-100 text-[#D94F00]' : 'opacity-0'}`}
                     />
                     {option.label}
                   </button>
@@ -164,14 +164,14 @@ export default function BudgetFilter({
   return (
     <div className="pt-0.5">
       {/* Segmented Control */}
-      <div className="mb-2 inline-flex items-center gap-px rounded-[7px] border border-[#322822]/6 bg-[#F5F1EC]/60 p-[3px]">
+      <div className="mb-2 inline-flex items-center gap-px rounded-[7px] border border-[#2A2118]/8 bg-[#F7F4F0]/70 p-[3px] backdrop-blur-sm">
         <button
           type="button"
           onClick={() => onModeChange('per')}
           className={`rounded-[7px] px-2.5 py-[4px] text-[10.5px] font-semibold tracking-[-0.01em] transition-all duration-150 ${
             mode === 'per'
-              ? 'bg-white text-[#E65100] shadow-[0_1px_3px_rgba(50,40,34,0.08)]'
-              : 'text-[#322822]/45 hover:text-[#322822]/70'
+              ? 'bg-white text-[#D94F00] shadow-[0_1px_4px_rgba(42,33,24,0.10),0_0.5px_1px_rgba(42,33,24,0.06)]'
+              : 'text-[#2A2118]/40 hover:text-[#2A2118]/65 hover:bg-white/40'
           }`}
         >
           {perLabel}
@@ -181,8 +181,8 @@ export default function BudgetFilter({
           onClick={() => onModeChange('overall')}
           className={`rounded-[7px] px-2.5 py-[4px] text-[10.5px] font-semibold tracking-[-0.01em] transition-all duration-150 ${
             mode === 'overall'
-              ? 'bg-white text-[#E65100] shadow-[0_1px_3px_rgba(50,40,34,0.08)]'
-              : 'text-[#322822]/45 hover:text-[#322822]/70'
+              ? 'bg-white text-[#D94F00] shadow-[0_1px_4px_rgba(42,33,24,0.10),0_0.5px_1px_rgba(42,33,24,0.06)]'
+              : 'text-[#2A2118]/40 hover:text-[#2A2118]/65 hover:bg-white/40'
           }`}
         >
           {overallLabel}
@@ -197,7 +197,7 @@ export default function BudgetFilter({
           placeholder="Min" 
           options={activeOptions} 
         />
-        <div className="h-px w-3 shrink-0 bg-[#322822]/10"></div>
+        <div className="h-px w-3 shrink-0 bg-[#2A2118]/8"></div>
         <StyledSelect 
           value={max} 
           onChange={onMaxChange} 

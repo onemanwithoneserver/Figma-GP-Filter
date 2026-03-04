@@ -7,8 +7,8 @@ export default function ProjectStatusFilter({ selected, onToggle, propertyAges =
     <div className="flex flex-col gap-2.5 pt-0.5">
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-1.5">
-          <TimerReset size={11} className="text-[#322822]/40" />
-          <span className="text-[10px] font-semibold tracking-wide text-[#322822]/60">Handover Timeline</span>
+          <TimerReset size={11} className="text-[#2A2118]/35" />
+          <span className="text-[10px] font-semibold tracking-wide text-[#2A2118]/55">Handover Timeline</span>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           {PROJECT_STATUS_OPTIONS.map((status) => (
@@ -18,8 +18,8 @@ export default function ProjectStatusFilter({ selected, onToggle, propertyAges =
       </div>
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-1.5">
-          <CalendarClock size={11} className="text-[#322822]/40" />
-          <span className="text-[10px] font-semibold tracking-wide text-[#322822]/60">Property Age</span>
+          <CalendarClock size={11} className="text-[#2A2118]/35" />
+          <span className="text-[10px] font-semibold tracking-wide text-[#2A2118]/55">Property Age</span>
         </div>
         <div className="flex flex-wrap items-center gap-1">
           {PROPERTY_AGE_OPTIONS.map((age) => (

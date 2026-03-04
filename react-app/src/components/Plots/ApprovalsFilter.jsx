@@ -5,7 +5,7 @@ import { PLOT_APPROVAL_OPTIONS } from '../common/filterOptions'
 export default function ApprovalsFilter({ selected, onToggle }) {
   return (
     <div>
-      <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+      <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/55">
         <CheckCircle2 size={10} />
         Approvals
       </div>

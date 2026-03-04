@@ -15,9 +15,9 @@ const HOME_MARKER_ICON = L.divIcon({
       width: 26px;
       height: 26px;
       border-radius: 5px;
-      background: #E65100;
+      background: #D94F00;
       border: 2px solid #FFFFFF;
-      box-shadow: 0 0 0 4px rgba(230,81,0,0.1), 0 4px 12px rgba(230,81,0,0.15);
+      box-shadow: 0 0 0 4px rgba(217,79,0,0.10), 0 4px 12px rgba(217,79,0,0.18);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -42,10 +42,10 @@ const createClusterIcon = (cluster) => {
         width: 38px;
         height: 38px;
         border-radius: 7px;
-        background: #E65100;
+        background: #D94F00;
         color: #FFFFFF;
         border: 2px solid #FFFFFF;
-        box-shadow: 0 0 0 5px rgba(230,81,0,0.08), 0 6px 16px rgba(230,81,0,0.15);
+        box-shadow: 0 0 0 5px rgba(217,79,0,0.08), 0 6px 16px rgba(217,79,0,0.18);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -92,17 +92,17 @@ function PropertyMapBase({ properties = [], height = 430, enableClustering = tru
         <Marker key={property.id} position={[property.lat, property.lng]} icon={HOME_MARKER_ICON}>
           <Popup>
             <div className="flex min-w-[200px] flex-col gap-1.5 p-1 font-sans">
-              <div className="text-[15px] font-medium leading-tight text-[#322822]">
+              <div className="text-[15px] font-medium leading-tight text-[#2A2118]">
                 {property.name}
               </div>
-              <div className="text-[13px] text-[#322822]/60">
+              <div className="text-[13px] text-[#2A2118]/55">
                 {property.location}
               </div>
-              <div className="mt-1 text-[14px] font-medium text-[#322822]">
+              <div className="mt-1 text-[14px] font-medium text-[#2A2118]">
                 {property.priceRange}
               </div>
               {property.highlights && property.highlights.length > 0 && (
-                <div className="mt-2 text-[12px] text-[#322822]/40">
+                <div className="mt-2 text-[12px] text-[#2A2118]/35">
                   {property.highlights.join(' • ')}
                 </div>
               )}
@@ -114,14 +114,14 @@ function PropertyMapBase({ properties = [], height = 430, enableClustering = tru
   )
 
   return (
-    <div className="overflow-hidden rounded-[7px] border border-[#322822]/8 bg-[#EAE3D7]/30 shadow-[0_4px_16px_-4px_rgba(50,40,34,0.08)] ring-1 ring-[#FFFFFF]/50">
+    <div className="overflow-hidden rounded-[7px] border border-[#2A2118]/8 bg-[#EFEBE4]/30 shadow-[0_4px_16px_-4px_rgba(42,33,24,0.10)] ring-1 ring-[#FFFFFF]/50">
       <MapContainer
         center={center}
         zoom={12}
         minZoom={9}
         scrollWheelZoom
         preferCanvas
-        style={{ height: `${height}px`, width: '100%', background: '#EAE3D7' }}
+        style={{ height: `${height}px`, width: '100%', background: '#EFEBE4' }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

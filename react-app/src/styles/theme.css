@@ -1,37 +1,55 @@
 /* ─── Premium Design System ─── */
 :root {
-  /* Core palette */
-  --primary: #322822;
-  --dark: #322822;
-  --bg: #F5F1EC;
-  --bg-warm: #EAE3D7;
+  /* Core palette — refined warm neutrals */
+  --primary: #2A2118;
+  --dark: #2A2118;
+  --bg: #F7F4F0;
+  --bg-warm: #EFEBE4;
   --white: #FFFFFF;
-  --accent: #E65100;
-  --accent-light: #FF6D00;
-  --accent-hover: #D84A00;
+  --accent: #D94F00;
+  --accent-light: #FF6D1F;
+  --accent-hover: #C24500;
+  --accent-glow: rgba(217, 79, 0, 0.10);
 
-  /* Neutral scale */
-  --gray-50: #FAFAF8;
+  /* Success / info */
+  --success: #1B8A3E;
+  --success-bg: rgba(27, 138, 62, 0.06);
+
+  /* Neutral scale — refined for depth */
+  --gray-50: #FBFAF9;
   --gray-100: #F5F3F0;
-  --gray-200: #E8E4DF;
-  --gray-300: #D4CFC8;
-  --gray-400: #A9A29A;
-  --gray-500: #7A746D;
-  --gray-600: #5C564F;
-  --gray-700: #3E3832;
+  --gray-200: #EAE6E1;
+  --gray-300: #D6D1CA;
+  --gray-400: #B0A99F;
+  --gray-500: #827B73;
+  --gray-600: #5E5750;
+  --gray-700: #3D362F;
 
-  /* Shadows */
-  --shadow-xs: 0 1px 2px rgba(50, 40, 34, 0.04);
-  --shadow-sm: 0 1px 3px rgba(50, 40, 34, 0.06), 0 1px 2px rgba(50, 40, 34, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(50, 40, 34, 0.06), 0 2px 4px -2px rgba(50, 40, 34, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(50, 40, 34, 0.06), 0 4px 6px -4px rgba(50, 40, 34, 0.04);
-  --shadow-dropdown: 0 6px 20px -4px rgba(50, 40, 34, 0.12), 0 2px 6px rgba(50, 40, 34, 0.06);
+  /* Shadows — layered for depth */
+  --shadow-xs: 0 1px 2px rgba(42, 33, 24, 0.05);
+  --shadow-sm: 0 1px 3px rgba(42, 33, 24, 0.07), 0 1px 2px rgba(42, 33, 24, 0.04);
+  --shadow-md: 0 4px 8px -2px rgba(42, 33, 24, 0.08), 0 2px 4px -2px rgba(42, 33, 24, 0.04);
+  --shadow-lg: 0 12px 24px -4px rgba(42, 33, 24, 0.10), 0 4px 8px -4px rgba(42, 33, 24, 0.05);
+  --shadow-xl: 0 20px 40px -8px rgba(42, 33, 24, 0.12), 0 8px 16px -6px rgba(42, 33, 24, 0.06);
+  --shadow-dropdown: 0 8px 24px -4px rgba(42, 33, 24, 0.14), 0 4px 8px rgba(42, 33, 24, 0.06);
+  --shadow-accent: 0 2px 8px rgba(217, 79, 0, 0.18), 0 1px 3px rgba(217, 79, 0, 0.10);
+  --shadow-accent-lg: 0 4px 16px rgba(217, 79, 0, 0.22), 0 2px 6px rgba(217, 79, 0, 0.12);
 
-  /* Transitions */
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --duration-fast: 150ms;
-  --duration: 200ms;
-  --duration-slow: 300ms;
+  /* Border tokens */
+  --border-subtle: rgba(42, 33, 24, 0.06);
+  --border-default: rgba(42, 33, 24, 0.10);
+  --border-strong: rgba(42, 33, 24, 0.16);
+
+  /* Transitions — premium easing */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 120ms;
+  --duration: 180ms;
+  --duration-slow: 280ms;
+
+  /* Typography */
+  --font-sans: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* ─── Global Reset & Base ─── */
@@ -45,16 +63,17 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
 body {
   margin: 0;
   background: var(--bg);
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   color: var(--dark);
   font-size: 14px;
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.008em;
 }
 
 /* ─── Premium Scrollbar ─── */
@@ -70,6 +89,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--gray-300);
   border-radius: 5px;
+  transition: background 200ms;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -84,13 +104,13 @@ body {
 /* ─── Focus Styles ─── */
 :focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 1px;
+  outline-offset: 2px;
   border-radius: 5px;
 }
 
 /* ─── Selection ─── */
 ::selection {
-  background: rgba(230, 81, 0, 0.12);
+  background: rgba(217, 79, 0, 0.14);
   color: var(--dark);
 }
 
@@ -112,21 +132,21 @@ input[type='range']::-webkit-slider-thumb {
   appearance: none;
   width: 16px;
   height: 16px;
-  border-radius: 6px;
+  border-radius: 50%;
   background: var(--accent);
-  border: 2px solid var(--white);
-  box-shadow: 0 1px 4px rgba(230, 81, 0, 0.25);
+  border: 2.5px solid var(--white);
+  box-shadow: var(--shadow-accent);
   margin-top: -6px;
-  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 150ms var(--ease-bounce), box-shadow 150ms var(--ease);
 }
 
 input[type='range']::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 2px 8px rgba(230, 81, 0, 0.3);
+  transform: scale(1.15);
+  box-shadow: var(--shadow-accent-lg);
 }
 
 input[type='range']:active::-webkit-slider-thumb {
-  transform: scale(0.95);
+  transform: scale(0.92);
 }
 
 input[type='range']::-moz-range-track {
@@ -137,29 +157,29 @@ input[type='range']::-moz-range-track {
 input[type='range']::-moz-range-thumb {
   width: 16px;
   height: 16px;
-  border-radius: 6px;
+  border-radius: 50%;
   background: var(--accent);
-  border: 2px solid var(--white);
-  box-shadow: 0 1px 4px rgba(230, 81, 0, 0.25);
+  border: 2.5px solid var(--white);
+  box-shadow: var(--shadow-accent);
 }
 
 /* ─── Input Focus ─── */
 input[type='text']:focus,
 input[type='number']:focus,
 select:focus {
-  border-color: rgba(230, 81, 0, 0.4) !important;
-  box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.06);
+  border-color: rgba(217, 79, 0, 0.35) !important;
+  box-shadow: 0 0 0 3px rgba(217, 79, 0, 0.08);
 }
 
 /* ─── Button Base ─── */
 button {
   font-family: inherit;
   cursor: pointer;
-  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration) var(--ease);
 }
 
 button:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 /* ─── Leaflet Overrides ─── */
@@ -168,7 +188,7 @@ button:active {
 }
 
 .leaflet-popup-content-wrapper {
-  border-radius: 6px !important;
+  border-radius: 8px !important;
   box-shadow: var(--shadow-lg) !important;
   padding: 0 !important;
 }

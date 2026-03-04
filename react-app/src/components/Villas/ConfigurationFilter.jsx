@@ -18,7 +18,7 @@ export default function ConfigurationFilter({
   return (
     <div className="grid gap-2 lg:grid-cols-3">
       <div>
-        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/55">
           <Home size={10} />
           Configuration
         </div>
@@ -35,7 +35,7 @@ export default function ConfigurationFilter({
       </div>
 
       <div>
-        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/55">
           <LandPlot size={10} />
           Plot Size (Sq.Yd)
         </div>
@@ -44,19 +44,19 @@ export default function ConfigurationFilter({
             value={plotMin}
             onChange={(event) => onPlotMinChange(event.target.value)}
             placeholder="Min"
-            className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] shadow-[0_1px_2px_rgba(50,40,34,0.03)] outline-none placeholder:text-[var(--dark)]/30 focus:border-[#E65100]/35 focus:shadow-[0_0_0_3px_rgba(230,81,0,0.04)]"
+            className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] shadow-[0_1px_2px_rgba(42,33,24,0.04)] outline-none placeholder:text-[var(--dark)]/28 transition-all focus:border-[#D94F00]/35 focus:shadow-[0_0_0_3px_rgba(217,79,0,0.06)]"
           />
           <input
             value={plotMax}
             onChange={(event) => onPlotMaxChange(event.target.value)}
             placeholder="Max"
-            className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] shadow-[0_1px_2px_rgba(50,40,34,0.03)] outline-none placeholder:text-[var(--dark)]/30 focus:border-[#E65100]/35 focus:shadow-[0_0_0_3px_rgba(230,81,0,0.04)]"
+            className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] shadow-[0_1px_2px_rgba(42,33,24,0.04)] outline-none placeholder:text-[var(--dark)]/28 transition-all focus:border-[#D94F00]/35 focus:shadow-[0_0_0_3px_rgba(217,79,0,0.06)]"
           />
         </div>
       </div>
 
       <div>
-        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/55">
           <Scale size={10} />
           Builtup Area (Sft)
         </div>
@@ -65,13 +65,13 @@ export default function ConfigurationFilter({
             value={builtupMin}
             onChange={(event) => onBuiltupMinChange(event.target.value)}
             placeholder="Min"
-            className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] shadow-[0_1px_2px_rgba(50,40,34,0.03)] outline-none placeholder:text-[var(--dark)]/30 focus:border-[#E65100]/35 focus:shadow-[0_0_0_3px_rgba(230,81,0,0.04)]"
+            className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] shadow-[0_1px_2px_rgba(42,33,24,0.04)] outline-none placeholder:text-[var(--dark)]/28 transition-all focus:border-[#D94F00]/35 focus:shadow-[0_0_0_3px_rgba(217,79,0,0.06)]"
           />
           <input
             value={builtupMax}
             onChange={(event) => onBuiltupMaxChange(event.target.value)}
             placeholder="Max"
-            className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] shadow-[0_1px_2px_rgba(50,40,34,0.03)] outline-none placeholder:text-[var(--dark)]/30 focus:border-[#E65100]/35 focus:shadow-[0_0_0_3px_rgba(230,81,0,0.04)]"
+            className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] shadow-[0_1px_2px_rgba(42,33,24,0.04)] outline-none placeholder:text-[var(--dark)]/28 transition-all focus:border-[#D94F00]/35 focus:shadow-[0_0_0_3px_rgba(217,79,0,0.06)]"
           />
         </div>
       </div>

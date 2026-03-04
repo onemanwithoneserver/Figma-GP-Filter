@@ -352,8 +352,8 @@ export default function SearchPage() {
         id={`preview-${mode}`}
         className={`mx-auto rounded-[7px] border bg-white transition-all duration-200 ${
           previewMode === mode
-            ? 'border-[#322822]/10 shadow-[0_1px_3px_rgba(50,40,34,0.06),0_1px_2px_rgba(50,40,34,0.04)]'
-            : 'border-[#322822]/5 opacity-50 hover:opacity-100'
+            ? 'border-[#2A2118]/10 shadow-[0_2px_8px_-2px_rgba(42,33,24,0.08),0_1px_3px_rgba(42,33,24,0.04)]'
+            : 'border-[#2A2118]/5 opacity-50 hover:opacity-100'
         }`}
       >
         <div className={`${viewportShellClass} flex flex-col gap-1.5 p-2`}>
@@ -373,15 +373,15 @@ export default function SearchPage() {
                       onClick={() => setActiveType(type)}
                       className={`inline-flex shrink-0 flex-col items-center gap-1 rounded-[7px] px-3 py-[6px] text-[10px] font-semibold tracking-[-0.01em] transition-all duration-150 sm:px-4 sm:text-[11px] ${
                         isActive
-                          ? 'border border-[#E65100]/20 bg-[#E65100]/[0.06] text-[#E65100] shadow-[0_1px_4px_rgba(230,81,0,0.08)]'
-                          : 'border border-transparent bg-[#F5F1EC]/50 text-[#322822]/50 hover:bg-[#F5F1EC] hover:text-[#322822]/70'
+                          ? 'border border-[#D94F00]/20 bg-gradient-to-b from-[#D94F00]/[0.04] to-[#D94F00]/[0.08] text-[#D94F00] shadow-[0_1px_4px_rgba(217,79,0,0.10)]'
+                          : 'border border-transparent bg-[#F7F4F0]/50 text-[#2A2118]/45 hover:bg-[#F7F4F0] hover:text-[#2A2118]/65'
                       }`}
                     >
                       {TypeIcon && (
                         <TypeIcon
                           size={18}
                           strokeWidth={isActive ? 2 : 1.5}
-                          className={isActive ? 'text-[#E65100]' : 'text-[#322822]/40'}
+                          className={isActive ? 'text-[#D94F00]' : 'text-[#2A2118]/35'}
                         />
                       )}
                       {type === 'SkyVillas' ? 'Sky Villas' : type}
@@ -409,26 +409,26 @@ export default function SearchPage() {
               <div className="flex items-center gap-1.5 pt-[2px]">
                 <button
                   type="button"
-                  className="rounded-[7px] px-3 py-[6px] text-[10.5px] font-semibold text-[#322822]/50 transition-all hover:text-[#322822]/80"
+                  className="rounded-[7px] px-3 py-[6px] text-[10.5px] font-semibold text-[#2A2118]/45 transition-all hover:text-[#2A2118]/75"
                 >
                   Clear All
                 </button>
                 <button
                   type="button"
-                  className="rounded-[7px] border border-[#322822]/10 bg-white px-3.5 py-[6px] text-[10.5px] font-semibold text-[#322822]/70 shadow-[0_1px_2px_rgba(50,40,34,0.03)] transition-all hover:border-[#322822]/15 hover:text-[#322822]"
+                  className="rounded-[7px] border border-[#2A2118]/8 bg-white px-3.5 py-[6px] text-[10.5px] font-semibold text-[#2A2118]/65 shadow-[0_1px_2px_rgba(42,33,24,0.04)] transition-all hover:border-[#2A2118]/14 hover:text-[#2A2118] hover:shadow-[0_1px_4px_rgba(42,33,24,0.07)]"
                 >
                   Save Search
                 </button>
                 <button
                   type="button"
-                  className="ml-auto rounded-[7px] bg-[#E65100] px-5 py-[6px] text-[10.5px] font-bold text-white shadow-[0_1px_4px_rgba(230,81,0,0.2)] transition-all hover:bg-[#D84A00] active:scale-[0.97]"
+                  className="ml-auto rounded-[7px] bg-gradient-to-b from-[#E85A10] to-[#D94F00] px-5 py-[6px] text-[10.5px] font-bold text-white shadow-[0_2px_8px_rgba(217,79,0,0.22),0_1px_3px_rgba(217,79,0,0.10)] transition-all hover:from-[#D94F00] hover:to-[#C24500] hover:shadow-[0_3px_12px_rgba(217,79,0,0.28)] active:scale-[0.97]"
                 >
                   Show {filteredResults.length} Properties
                 </button>
               </div>
             </div>
           ) : (
-            <div className="rounded-[7px] border border-dashed border-[#322822]/8 bg-[#F5F1EC]/40 p-3 text-center text-[10.5px] font-medium text-[#322822]/40">
+            <div className="rounded-[7px] border border-dashed border-[#2A2118]/8 bg-[#F7F4F0]/40 p-3 text-center text-[10.5px] font-medium text-[#2A2118]/35">
               Filters collapsed — tap the filter icon to expand.
             </div>
           )}
@@ -438,8 +438,8 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F1EC] font-sans text-[#322822]">
-      <div className="sticky top-0 z-50 border-b border-[#322822]/6 bg-white/95 backdrop-blur-md">
+    <div className="min-h-screen bg-[#F7F4F0] font-sans text-[#2A2118]">
+      <div className="sticky top-0 z-50 border-b border-[#2A2118]/6 bg-white/95 backdrop-blur-md shadow-[0_1px_3px_rgba(42,33,24,0.04)]">
         <TopControls
           previewMode={previewMode}
           onPreviewModeChange={setPreviewMode}

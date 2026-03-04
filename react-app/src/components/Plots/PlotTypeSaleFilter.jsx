@@ -6,7 +6,7 @@ export default function PlotTypeSaleFilter({ selectedType, selectedSaleType, onT
   return (
     <>
       <div className="mb-2">
-        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/55">
           <Landmark size={10} />
           Plot Type
         </div>
@@ -23,7 +23,7 @@ export default function PlotTypeSaleFilter({ selectedType, selectedSaleType, onT
       </div>
 
       <div>
-        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/60">
+        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]/55">
           <ReceiptText size={10} />
           Sale Type
         </div>
