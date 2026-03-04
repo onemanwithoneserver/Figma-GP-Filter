@@ -343,7 +343,7 @@ export default function SearchPage() {
     const showModeFilters = showFilters[mode]
     const viewportShellClass =
       mode === 'desktop'
-        ? 'w-full'
+        ? 'w-full max-w-[1400px]'
         : mode === 'tablet'
           ? 'mx-auto w-full max-w-[920px]'
           : 'mx-auto w-full max-w-[430px]'
@@ -352,37 +352,44 @@ export default function SearchPage() {
       <section
         key={mode}
         id={`preview-${mode}`}
-        className={`rounded-[7px] border bg-(--white) p-3 transition-all ${
+        className={`mx-auto rounded-[7px] border bg-[#FFFFFF] p-4 shadow-sm transition-all duration-300 ${
           previewMode === mode
-            ? 'border-(--primary) ring-2 ring-(--primary)/20'
-            : 'border-(--dark)/20'
+            ? 'border-[#322822]/20 shadow-md shadow-[#322822]/5 ring-1 ring-[#322822]/10'
+            : 'border-[#322822]/10 opacity-60 hover:opacity-100'
         }`}
       >
         <div
-          className={`${viewportShellClass} flex gap-3 ${desktopLayout ? 'flex-row' : 'flex-col'}`}
+          className={`${viewportShellClass} flex gap-5 ${desktopLayout ? 'flex-row' : 'flex-col'}`}
         >
           {showModeFilters ? (
             <aside
-              className={`rounded-[7px] border border-(--dark)/15 bg-(--white) p-3 ${
-                desktopLayout ? 'w-4/5' : 'w-full'
+              className={`flex flex-col gap-4 rounded-[7px] ${
+                desktopLayout ? 'w-5/7' : 'w-full'
               }`}
             >
-              <div className="mb-3 flex flex-wrap gap-2">
+              {/* Individual Premium Property Type Tabs */}
+              <div className="flex flex-wrap gap-3">
                 {PROPERTY_TYPES.map((type) => {
                   const TypeIcon = PROPERTY_TYPE_ICONS[type]
+                  const isActive = activeType === type;
 
                   return (
                     <button
                       key={`${mode}-${type}`}
                       type="button"
                       onClick={() => setActiveType(type)}
-                      className={`inline-flex items-center gap-1.5 rounded-[7px] border px-3 py-2 text-xs font-semibold ${
-                        activeType === type
-                          ? 'border-(--primary) bg-(--primary) text-(--white)'
-                          : 'border-(--dark)/20 bg-(--white) text-(--dark)'
+                      className={`inline-flex items-center gap-2 rounded-[5px] px-5 py-2.5 text-sm font-semibold tracking-wide transition-all duration-200 ${
+                        isActive
+                          ? 'bg-[#E65100] text-[#FFFFFF] shadow-md shadow-[#E65100]/20'
+                          : 'bg-[#EAE3D7]/70 text-[#322822] hover:bg-[#EAE3D7]'
                       }`}
                     >
-                      {TypeIcon ? <TypeIcon size={14} /> : null}
+                      {TypeIcon && (
+                        <TypeIcon 
+                          size={16} 
+                          className={`transition-colors duration-200 ${isActive ? 'text-[#FFFFFF]' : 'text-[#E65100]'}`} 
+                        />
+                      )}
                       {type}
                     </button>
                   )
@@ -397,17 +404,17 @@ export default function SearchPage() {
               />
             </aside>
           ) : (
-            <aside className="rounded-[7px] border border-dashed border-(--dark)/20 bg-(--bg) p-4 text-sm text-[var(--dark)]/80">
+            <aside className="rounded-[7px] border border-dashed border-[#322822]/20 bg-[#EAE3D7]/20 p-5 text-center text-sm font-medium text-[#322822]/60">
               Filters are collapsed for mobile preview. Use the filter icon above to open.
             </aside>
           )}
 
-          <section className={`flex gap-3 ${desktopLayout ? 'w-1/5 flex-col' : 'w-full flex-col'}`}>
-            <div className={desktopLayout ? 'h-[220px]' : mode === 'tablet' ? 'h-[210px]' : 'h-[170px]'}>
+          <section className={`flex gap-5 ${desktopLayout ? 'w-2/7 flex-col' : 'w-full flex-col'}`}>
+            <div className={`overflow-hidden rounded-[7px] ${desktopLayout ? 'h-[240px]' : mode === 'tablet' ? 'h-[220px]' : 'h-[180px]'}`}>
               <ResultsSection results={filteredResults} />
             </div>
 
-            <div className={desktopLayout ? 'min-h-[480px]' : mode === 'tablet' ? 'min-h-[540px]' : 'min-h-[620px]'}>
+            <div className="overflow-hidden rounded-[7px]">
               <MapSection results={filteredResults} />
             </div>
           </section>
@@ -417,16 +424,18 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-(--bg)">
-      <TopControls
-        previewMode={previewMode}
-        onPreviewModeChange={setPreviewMode}
-        onFilterToggle={() =>
-          setShowFilters((previous) => ({ ...previous, mobile: !previous.mobile }))
-        }
-      />
+    <div className="min-h-screen bg-[#EAE3D7] font-sans text-[#322822]">
+      <div className="sticky top-0 z-50 border-b border-[#322822]/10 bg-[#FFFFFF]/80 backdrop-blur-md">
+        <TopControls
+          previewMode={previewMode}
+          onPreviewModeChange={setPreviewMode}
+          onFilterToggle={() =>
+            setShowFilters((previous) => ({ ...previous, mobile: !previous.mobile }))
+          }
+        />
+      </div>
 
-      <div className="mx-auto flex w-full max-w-400 flex-col gap-4 p-3 pb-8">
+      <div className="mx-auto flex w-full flex-col gap-6 p-4 pb-12 sm:p-6 lg:p-8">
         {renderPreview(previewMode)}
       </div>
     </div>

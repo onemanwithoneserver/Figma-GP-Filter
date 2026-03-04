@@ -15,22 +15,23 @@ export default function UnitAreaFilter({ selected, onToggle, areaMin, areaMax, o
         ))}
       </div>
 
-      <span className="hidden text-sm text-[var(--dark)]/50 lg:block">-</span>
+      <span className="hidden text-sm text-[#322822]/40 lg:block">-</span>
 
       <div className="grid grid-cols-2 gap-2">
         <input
           value={areaMin}
           onChange={(event) => onAreaMinChange(event.target.value)}
           placeholder="Min (×100)"
-          className="rounded-[7px] border border-[var(--dark)]/20 bg-[var(--white)] px-3 py-2 text-sm text-[var(--dark)] outline-none"
+          className="rounded-[7px] border border-[#322822]/20 bg-white px-3 py-2 text-sm text-[#322822] shadow-[0_1px_3px_rgba(50,40,34,0.04)] outline-none transition-all duration-200 placeholder:text-[#322822]/40 focus:border-[#322822] focus:shadow-[0_0_0_3px_rgba(50,40,34,0.08)]"
         />
         <input
           value={areaMax}
           onChange={(event) => onAreaMaxChange(event.target.value)}
           placeholder="Max (×100)"
-          className="rounded-[7px] border border-[var(--dark)]/20 bg-[var(--white)] px-3 py-2 text-sm text-[var(--dark)] outline-none"
+          className="rounded-[7px] border border-[#322822]/20 bg-white px-3 py-2 text-sm text-[#322822] shadow-[0_1px_3px_rgba(50,40,34,0.04)] outline-none transition-all duration-200 placeholder:text-[#322822]/40 focus:border-[#322822] focus:shadow-[0_0_0_3px_rgba(50,40,34,0.08)]"
         />
       </div>
     </div>
   )
 }
+

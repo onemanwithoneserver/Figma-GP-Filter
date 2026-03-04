@@ -8,22 +8,29 @@ const options = [
 
 export default function DeviceSwitcher({ value, onChange }) {
   return (
-    <div className="inline-flex items-center overflow-hidden rounded-[5px] border border-[var(--dark)]/35 bg-[var(--white)]">
-      {options.map(({ key, label, icon: Icon }) => (
-        <button
-          key={key}
-          type="button"
-          onClick={() => onChange(key)}
-          className={`inline-flex items-center gap-1.5 border-l px-2.5 py-2 text-xs font-medium first:border-l-0 ${
-            value === key
-              ? 'border-[var(--dark)]/35 bg-[var(--primary)] text-[var(--white)]'
-              : 'border-[var(--dark)]/20 text-[var(--dark)]'
-          }`}
-        >
-          <Icon size={14} />
-          {label}
-        </button>
-      ))}
+    <div className="inline-flex items-center gap-1 rounded-[7px] border border-[#322822]/10 bg-[#EAE3D7]/40 p-1 shadow-inner">
+      {options.map(({ key, label, icon: Icon }) => {
+        const isActive = value === key;
+        
+        return (
+          <button
+            key={key}
+            type="button"
+            onClick={() => onChange(key)}
+            className={`inline-flex items-center gap-2 rounded-[5px] px-3 py-1.5 text-sm font-medium transition-all duration-300 ${
+              isActive
+                ? 'bg-[#E65100]/10 text-[#E65100] shadow-sm ring-1 ring-[#E65100]/25'
+                : 'text-[#322822]/60 hover:bg-[#322822]/5 hover:text-[#322822]'
+            }`}
+          >
+            <Icon
+              size={16}
+              className="text-[#E65100] transition-colors duration-300"
+            />
+            {label}
+          </button>
+        );
+      })}
     </div>
   )
 }

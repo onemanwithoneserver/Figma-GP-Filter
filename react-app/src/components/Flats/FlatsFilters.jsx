@@ -11,9 +11,9 @@ import UnitAreaFilter from './UnitAreaFilter'
 export default function FlatsFilters({ filterState, onUpdate, openSections, onToggleSection }) {
   const isOpen = (id) => openSections.includes(id)
   const premiumSectionClass =
-    'rounded-[7px] border-[var(--dark)]/15 shadow-[0_10px_30px_rgba(0,0,0,0.05)]'
-  const premiumHeaderClass = 'bg-[var(--white)]'
-  const premiumContentClass = 'bg-[var(--white)]'
+    'rounded-[7px] border-[#322822]/10 shadow-[0_2px_12px_rgba(50,40,34,0.05)]'
+  const premiumHeaderClass = 'bg-white'
+  const premiumContentClass = 'bg-white'
 
   return (
     <div>
@@ -109,7 +109,7 @@ export default function FlatsFilters({ filterState, onUpdate, openSections, onTo
         open={isOpen('specialOffers')}
         onToggle={() => onToggleSection('specialOffers')}
         highlight
-        sectionClassName="rounded-[7px] border-[var(--primary)]/50 bg-[linear-gradient(90deg,rgba(217,70,239,0.08)_0%,rgba(244,114,182,0.08)_45%,rgba(249,115,22,0.08)_100%)] shadow-[0_10px_30px_rgba(0,0,0,0.05)]"
+        sectionClassName="rounded-[7px] border-[#322822]/25 bg-[linear-gradient(135deg,rgba(50,40,34,0.04)_0%,rgba(50,40,34,0.08)_100%)] shadow-[0_2px_12px_rgba(50,40,34,0.06)]"
         headerClassName="bg-transparent"
         contentClassName="bg-transparent"
       >
@@ -121,3 +121,4 @@ export default function FlatsFilters({ filterState, onUpdate, openSections, onTo
     </div>
   )
 }
+

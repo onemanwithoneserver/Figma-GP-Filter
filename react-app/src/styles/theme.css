@@ -1,6 +1,6 @@
 :root {
-  --primary: #D24D00;
-  --dark: #2D241F;
+  --primary: #322822;
+  --dark: #322822;
   --bg: #EAE3D7;
   --white: #FFFFFF;
 }
@@ -11,3 +11,4 @@ body {
   font-family: Inter, sans-serif;
   color: var(--dark);
 }
+

@@ -55,34 +55,29 @@ export default function MapSection({ results }) {
   )
 
   return (
-    <div className="flex h-full flex-col rounded-[7px] border border-[var(--dark)]/15 bg-[var(--white)] p-3">
-      <div className="mb-2 flex items-center justify-between">
-        <div className="text-sm font-semibold text-[var(--dark)]">Map View</div>
-        <div className="text-xs text-[var(--dark)]/70">Drag & zoom enabled</div>
-      </div>
-
-      <div className="mb-3 flex-1">
+    <div className="flex h-full flex-col">
+      <div className="mb-4 overflow-hidden rounded-[5px] border border-[#322822]/10 ring-1 ring-[#FFFFFF]/50">
         <PropertyMap properties={properties} height={360} enableClustering={false} />
       </div>
 
-      <div className="mt-auto flex flex-wrap items-center justify-end gap-2">
+      <div className="mt-auto flex flex-wrap items-center justify-end gap-3">
         <button
           type="button"
-          className="rounded-[7px] border border-[var(--dark)]/25 px-2.5 py-2 text-sm font-semibold text-[var(--dark)] sm:px-3"
+          className="rounded-[5px] px-3 py-2 text-sm font-medium text-[#322822] transition-colors duration-200 hover:text-[#322822]"
         >
-          Clear All
+          Clear all
         </button>
         <button
           type="button"
-          className="rounded-[7px] border border-[var(--dark)]/30 bg-[var(--white)] px-2.5 py-2 text-sm font-semibold text-[var(--dark)] sm:px-3"
+          className="rounded-[5px] border border-[#322822] bg-[#FFFFFF] px-4 py-2 text-sm font-medium text-[#322822] shadow-sm transition-all duration-200 hover:bg-[#322822]/5"
         >
-          Save Search
+          Save search
         </button>
         <button
           type="button"
-          className="rounded-[7px] bg-[var(--primary)] px-3 py-2 text-sm font-semibold text-[var(--white)] sm:px-4"
+          className="rounded-[5px] bg-[#E65100] px-5 py-2 text-sm font-medium text-[#FFFFFF] shadow-md shadow-[#E65100]/20 transition-all duration-200 hover:bg-[#E65100]/90 hover:shadow-[#E65100]/30"
         >
-          Show Properties
+          Show properties
         </button>
       </div>
     </div>

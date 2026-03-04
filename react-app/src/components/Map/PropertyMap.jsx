@@ -9,27 +9,28 @@ import 'react-leaflet-cluster/dist/assets/MarkerCluster.Default.css'
 const HYDERABAD_CENTER = [17.4435, 78.3772]
 
 const HOME_MARKER_ICON = L.divIcon({
-  className: 'property-home-marker',
+  className: 'bg-transparent border-none',
   html: `
     <div style="
-      width: 22px;
-      height: 22px;
-      border-radius: 9999px;
-      background: #8A5A2B;
-      border: 2px solid rgba(255,255,255,0.8);
-      box-shadow: 0 0 0 5px rgba(138,90,43,0.2), 0 6px 14px rgba(0,0,0,0.18);
+      width: 26px;
+      height: 26px;
+      border-radius: 5px;
+      background: #E65100;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(230,81,0,0.1), 0 4px 12px rgba(230,81,0,0.15);
       display: flex;
       align-items: center;
       justify-content: center;
       user-select: none;
+      transition: all 0.2s ease;
     ">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M3 10.5L12 3L21 10.5V21H14V14H10V21H3V10.5Z" fill="#FFFFFF"/>
       </svg>
     </div>
   `,
-  iconSize: [22, 22],
-  iconAnchor: [11, 11],
+  iconSize: [26, 26],
+  iconAnchor: [13, 13],
 })
 
 const createClusterIcon = (cluster) => {
@@ -38,23 +39,23 @@ const createClusterIcon = (cluster) => {
   return L.divIcon({
     html: `
       <div style="
-        width: 34px;
-        height: 34px;
-        border-radius: 9999px;
-        background: #8A5A2B;
-        color: #ffffff;
-        border: 2px solid rgba(255,255,255,0.85);
-        box-shadow: 0 0 0 8px rgba(138,90,43,0.2), 0 6px 14px rgba(0,0,0,0.2);
+        width: 38px;
+        height: 38px;
+        border-radius: 7px;
+        background: #E65100;
+        color: #FFFFFF;
+        border: 2px solid #FFFFFF;
+        box-shadow: 0 0 0 5px rgba(230,81,0,0.08), 0 6px 16px rgba(230,81,0,0.15);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 11px;
-        font-weight: 700;
+        font-size: 14px;
+        font-weight: 500;
       ">${count}</div>
     `,
-    className: 'property-cluster-marker',
-    iconSize: [34, 34],
-    iconAnchor: [17, 17],
+    className: 'bg-transparent border-none',
+    iconSize: [38, 38],
+    iconAnchor: [19, 19],
   })
 }
 
@@ -90,11 +91,21 @@ function PropertyMapBase({ properties = [], height = 430, enableClustering = tru
       normalizedProperties.map((property) => (
         <Marker key={property.id} position={[property.lat, property.lng]} icon={HOME_MARKER_ICON}>
           <Popup>
-            <div className="min-w-[180px] text-[12px]">
-              <div className="font-semibold">{property.name}</div>
-              <div>{property.location}</div>
-              <div className="text-[var(--primary)]">{property.priceRange}</div>
-              <div>{property.highlights.join(' • ')}</div>
+            <div className="flex min-w-[200px] flex-col gap-1.5 p-1 font-sans">
+              <div className="text-[15px] font-medium leading-tight text-[#322822]">
+                {property.name}
+              </div>
+              <div className="text-[13px] text-[#322822]/60">
+                {property.location}
+              </div>
+              <div className="mt-1 text-[14px] font-medium text-[#322822]">
+                {property.priceRange}
+              </div>
+              {property.highlights && property.highlights.length > 0 && (
+                <div className="mt-2 text-[12px] text-[#322822]/40">
+                  {property.highlights.join(' • ')}
+                </div>
+              )}
             </div>
           </Popup>
         </Marker>
@@ -103,18 +114,19 @@ function PropertyMapBase({ properties = [], height = 430, enableClustering = tru
   )
 
   return (
-    <div className="overflow-hidden rounded-[5px] border border-[var(--dark)]/10">
+    <div className="overflow-hidden rounded-[7px] border border-[#322822]/10 bg-[#EAE3D7]/30 shadow-xl shadow-[#322822]/5 ring-1 ring-[#FFFFFF]/50">
       <MapContainer
         center={center}
         zoom={12}
         minZoom={9}
         scrollWheelZoom
         preferCanvas
-        style={{ height: `${height}px`, width: '100%' }}
+        style={{ height: `${height}px`, width: '100%', background: '#EAE3D7' }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          className="opacity-90 saturate-[0.85] sepia-[0.1]"
         />
 
         {enableClustering ? (
