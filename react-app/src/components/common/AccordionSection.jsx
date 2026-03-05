@@ -47,14 +47,16 @@ export default function AccordionSection({
  >
  <div className="flex items-center gap-2">
  {Icon && (
- <div className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] transition-all duration-200 ${
+ <div className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-[5px] transition-all duration-200 ${
  highlight
- ? 'bg-[#EE5500]'
- : open
- ? 'bg-[#2A221C]'
- : 'bg-[#2A221C] group-hover:bg-[#2A221C]'
+ ? 'bg-[#8C6239]/18'
+ : isOpen
+ ? 'bg-[#2A221C]/10'
+ : 'bg-[#2A221C]/8 group-hover:bg-[#2A221C]/12'
  }`}>
- <Icon size={10} className="text-white stroke-[2.5px]" />
+ <span className="text-[14px] leading-none" role="img" aria-hidden="true">
+ {sectionEmoji}
+ </span>
  </div>
  )}
  <span className="font-['Outfit'] text-[11.5px] font-semibold tracking-[-0.01em] text-[#2A221C]">
