@@ -19,7 +19,7 @@ export default function ConfigurationFilter({
  return (
  <div className={isMobile ? 'grid gap-2 grid-cols-1' : 'grid gap-2 lg:grid-cols-3'}>
  <div>
- <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
+ <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">
  <Home size={10} />
  Configuration
  </div>
@@ -36,7 +36,7 @@ export default function ConfigurationFilter({
  </div>
 
  <div>
- <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
+ <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">
  <LandPlot size={10} />
  Plot Size (Sq.Yd)
  </div>
@@ -45,19 +45,19 @@ export default function ConfigurationFilter({
  value={plotMin}
  onChange={(event) => onPlotMinChange(event.target.value)}
  placeholder="Min"
- className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#D94F00]/35"
  />
  <input
  value={plotMax}
  onChange={(event) => onPlotMaxChange(event.target.value)}
  placeholder="Max"
- className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#D94F00]/35"
  />
  </div>
  </div>
 
  <div>
- <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
+ <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">
  <Scale size={10} />
  Builtup Area (Sft)
  </div>
@@ -66,13 +66,13 @@ export default function ConfigurationFilter({
  value={builtupMin}
  onChange={(event) => onBuiltupMinChange(event.target.value)}
  placeholder="Min"
- className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#D94F00]/35"
  />
  <input
  value={builtupMax}
  onChange={(event) => onBuiltupMaxChange(event.target.value)}
  placeholder="Max"
- className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#D94F00]/35"
  />
  </div>
  </div>

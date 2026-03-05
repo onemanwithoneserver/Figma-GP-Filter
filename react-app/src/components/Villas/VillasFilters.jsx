@@ -12,7 +12,7 @@ export default function VillasFilters({ filterState, onUpdate, openSections, onT
  const isOpen = (id) => openSections.includes(id)
 
  return (
- <div className={isMobile ? 'flex flex-col gap-y-[2px]' : 'grid grid-cols-1 gap-x-2 gap-y-[2px] lg:grid-cols-2'}>
+ <div className={isMobile ? 'flex flex-col gap-y-0.5' : 'grid grid-cols-1 gap-x-2 gap-y-0.5 lg:grid-cols-2'}>
  {/* Left Column */}
  <div className="flex flex-col">
  <AccordionSection
