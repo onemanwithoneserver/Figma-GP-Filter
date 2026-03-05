@@ -68,7 +68,7 @@ function StyledSelect({ value, onChange, placeholder, options }) {
  ref={triggerRef}
  type="button"
  onClick={() => setOpen((prev) => !prev)}
- className={`flex w-full items-center justify-between rounded-[7px] border bg-[#FFFFFF] px-2 py-1.25 text-[10.5px] font-medium transition-all duration-150 focus:outline-none ${
+ className={`flex w-full items-center justify-between rounded-[5px] border bg-[#FFFFFF] px-2 py-1.25 text-[10.5px] font-medium transition-all duration-150 focus:outline-none ${
  open
  ? 'border-[#D94F00]/35'
  : 'border-[#2A221C]/8 hover:border-[#2A221C]/8'
@@ -93,7 +93,7 @@ function StyledSelect({ value, onChange, placeholder, options }) {
  left: pos.left,
  width: pos.width,
  }}
- className={`z-9999 origin-top overflow-hidden rounded-[7px] border border-[#2A221C]/8 bg-[#FFFFFF] transition-all duration-150 ${
+ className={`z-9999 origin-top overflow-hidden rounded-[5px] border border-[#2A221C]/8 bg-[#FFFFFF] transition-all duration-150 ${
  open
  ? 'scale-y-100 opacity-100'
  : 'pointer-events-none scale-y-95 opacity-0'
@@ -164,11 +164,11 @@ export default function BudgetFilter({
  return (
  <div className="pt-0.5">
  {/* Segmented Control */}
- <div className="mb-2 inline-flex items-center gap-px rounded-[7px] border border-[#2A221C]/8 bg-[#F7F4F0]/70 p-0.75 backdrop-blur-sm">
+ <div className="mb-2 inline-flex items-center gap-px rounded-[5px] border border-[#2A221C]/8 bg-[#F7F4F0]/70 p-0.75 backdrop-blur-sm">
  <button
  type="button"
  onClick={() => onModeChange('per')}
- className={`rounded-[7px] px-2.5 py-1 text-[10.5px] font-semibold tracking-[-0.01em] transition-all duration-150 ${
+ className={`rounded-[5px] px-2.5 py-1 text-[10.5px] font-semibold tracking-[-0.01em] transition-all duration-150 ${
  mode === 'per'
  ? 'bg-white text-[#D94F00]'
  : 'text-[#2A221C] hover:text-[#2A221C] hover:bg-white/40'
@@ -179,7 +179,7 @@ export default function BudgetFilter({
  <button
  type="button"
  onClick={() => onModeChange('overall')}
- className={`rounded-[7px] px-2.5 py-1 text-[10.5px] font-semibold tracking-[-0.01em] transition-all duration-150 ${
+ className={`rounded-[5px] px-2.5 py-1 text-[10.5px] font-semibold tracking-[-0.01em] transition-all duration-150 ${
  mode === 'overall'
  ? 'bg-white text-[#D94F00]'
  : 'text-[#2A221C] hover:text-[#2A221C] hover:bg-white/40'

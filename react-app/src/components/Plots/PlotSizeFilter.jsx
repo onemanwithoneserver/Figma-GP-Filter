@@ -62,7 +62,7 @@ function OrrDistanceSelect({ value, onChange }) {
  ref={triggerRef}
  type="button"
  onClick={() => setOpen((previous) => !previous)}
- className={`group flex w-full items-center justify-between rounded-[7px] border bg-[#FFFFFF] px-2 py-[5px] pr-7 text-[10.5px] font-medium outline-none transition-all duration-150 focus:ring-2 focus:ring-[#D94F00]/8 ${
+ className={`group flex w-full items-center justify-between rounded-[5px] border bg-[#FFFFFF] px-2 py-[5px] pr-7 text-[10.5px] font-medium outline-none transition-all duration-150 focus:ring-2 focus:ring-[#D94F00]/8 ${
  open
  ? 'border-[#D94F00]/35'
  : 'border-[var(--dark)]/8 hover:border-[var(--dark)]/8'
@@ -86,7 +86,7 @@ function OrrDistanceSelect({ value, onChange }) {
  left: pos.left,
  width: pos.width,
  }}
- className={`z-[9999] origin-top overflow-hidden rounded-[7px] border border-[var(--dark)]/8 bg-[#FFFFFF] transition-all duration-150 ${
+ className={`z-[9999] origin-top overflow-hidden rounded-[5px] border border-[var(--dark)]/8 bg-[#FFFFFF] transition-all duration-150 ${
  open ? 'scale-y-100 opacity-100' : 'pointer-events-none scale-y-95 opacity-0'
  }`}
  >
@@ -141,9 +141,10 @@ export default function PlotSizeFilter({
  onPlotMaxChange,
  orrDistance,
  onOrrDistanceChange,
+ isMobile = false,
 }) {
  return (
- <div className="grid gap-2 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-end">
+ <div className={isMobile ? 'grid gap-2 grid-cols-1' : 'grid gap-2 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-end'}>
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
  <LandPlot size={10} />
@@ -153,11 +154,11 @@ export default function PlotSizeFilter({
  value={plotMin}
  onChange={(event) => onPlotMinChange(event.target.value)}
  placeholder="Min"
- className="w-full rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="w-full rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
  />
  </div>
 
- <span className="hidden text-[10px] text-[var(--dark)] lg:block">–</span>
+ <span className={isMobile ? 'hidden' : 'hidden text-[10px] text-[var(--dark)] lg:block'}>–</span>
 
  <div>
  <div className="mb-1 text-[10px] font-semibold text-transparent">spacer</div>
@@ -165,11 +166,11 @@ export default function PlotSizeFilter({
  value={plotMax}
  onChange={(event) => onPlotMaxChange(event.target.value)}
  placeholder="Max"
- className="w-full rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="w-full rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
  />
  </div>
 
- <span className="hidden text-[10px] text-[var(--dark)] lg:block">–</span>
+ <span className={isMobile ? 'hidden' : 'hidden text-[10px] text-[var(--dark)] lg:block'}>–</span>
 
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">

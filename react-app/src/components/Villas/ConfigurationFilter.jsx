@@ -14,9 +14,10 @@ export default function ConfigurationFilter({
  builtupMax,
  onBuiltupMinChange,
  onBuiltupMaxChange,
+ isMobile = false,
 }) {
  return (
- <div className="grid gap-2 lg:grid-cols-3">
+ <div className={isMobile ? 'grid gap-2 grid-cols-1' : 'grid gap-2 lg:grid-cols-3'}>
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
  <Home size={10} />
@@ -39,18 +40,18 @@ export default function ConfigurationFilter({
  <LandPlot size={10} />
  Plot Size (Sq.Yd)
  </div>
- <div className="grid grid-cols-2 gap-1">
+ <div className={isMobile ? 'grid grid-cols-1 gap-1' : 'grid grid-cols-2 gap-1'}>
  <input
  value={plotMin}
  onChange={(event) => onPlotMinChange(event.target.value)}
  placeholder="Min"
- className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
  />
  <input
  value={plotMax}
  onChange={(event) => onPlotMaxChange(event.target.value)}
  placeholder="Max"
- className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
  />
  </div>
  </div>
@@ -60,18 +61,18 @@ export default function ConfigurationFilter({
  <Scale size={10} />
  Builtup Area (Sft)
  </div>
- <div className="grid grid-cols-2 gap-1">
+ <div className={isMobile ? 'grid grid-cols-1 gap-1' : 'grid grid-cols-2 gap-1'}>
  <input
  value={builtupMin}
  onChange={(event) => onBuiltupMinChange(event.target.value)}
  placeholder="Min"
- className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
  />
  <input
  value={builtupMax}
  onChange={(event) => onBuiltupMaxChange(event.target.value)}
  placeholder="Max"
- className="rounded-[7px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
  />
  </div>
  </div>

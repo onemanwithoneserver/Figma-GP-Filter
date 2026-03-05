@@ -39,6 +39,7 @@ export default function PlotsFilters({ filterState, onUpdate, openSections, onTo
  onPlotMaxChange={(value) => onUpdate('plotsPlotMax', value)}
  orrDistance={filterState.orrDistance}
  onOrrDistanceChange={(value) => onUpdate('orrDistance', value)}
+ isMobile={isMobile}
  />
  </AccordionSection>
 
@@ -83,7 +84,7 @@ export default function PlotsFilters({ filterState, onUpdate, openSections, onTo
  open={isOpen('approvals') || isOpen('finalPermission')}
  onToggle={() => onToggleSection('approvals')}
  >
- <div className="grid gap-2 lg:grid-cols-2">
+ <div className={isMobile ? 'grid gap-2 grid-cols-1' : 'grid gap-2 lg:grid-cols-2'}>
  <ApprovalsFilter
  selected={filterState.approvals}
  onToggle={(value) => onUpdate('approvals', value, true)}

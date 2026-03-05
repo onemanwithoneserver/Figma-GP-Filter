@@ -41,6 +41,7 @@ export default function VillasFilters({ filterState, onUpdate, openSections, onT
  builtupMax={filterState.villasBuiltupMax}
  onBuiltupMinChange={(value) => onUpdate('villasBuiltupMin', value)}
  onBuiltupMaxChange={(value) => onUpdate('villasBuiltupMax', value)}
+ isMobile={isMobile}
  />
  </AccordionSection>
 

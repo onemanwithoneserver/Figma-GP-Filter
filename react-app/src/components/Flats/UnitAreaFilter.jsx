@@ -2,9 +2,9 @@ import { Ruler, Scale } from 'lucide-react'
 import TagButton from '../common/TagButton'
 import { UNIT_SIZE_OPTIONS } from '../common/filterOptions'
 
-export default function UnitAreaFilter({ selected, onToggle, areaMin, areaMax, onAreaMinChange, onAreaMaxChange }) {
+export default function UnitAreaFilter({ selected, onToggle, areaMin, areaMax, onAreaMinChange, onAreaMaxChange, isMobile = false }) {
  return (
- <div className="grid gap-2 lg:grid-cols-[1fr_auto_1fr] lg:items-end">
+ <div className={isMobile ? 'grid gap-2 grid-cols-1' : 'grid gap-2 lg:grid-cols-[1fr_auto_1fr] lg:items-end'}>
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[#2A221C]">
  <Ruler size={10} />
@@ -22,25 +22,25 @@ export default function UnitAreaFilter({ selected, onToggle, areaMin, areaMax, o
  </div>
  </div>
 
- <span className="hidden text-[10px] text-[#2A221C] lg:block">–</span>
+ <span className={isMobile ? 'hidden' : 'hidden text-[10px] text-[#2A221C] lg:block'}>–</span>
 
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[#2A221C]">
  <Scale size={10} />
  Unit Area (Sft)
  </div>
- <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+ <div className={isMobile ? 'grid grid-cols-1 gap-1' : 'grid grid-cols-1 gap-1 sm:grid-cols-2'}>
  <input
  value={areaMin}
  onChange={(event) => onAreaMinChange(event.target.value)}
  placeholder="Min Sft"
- className="rounded-[7px] border border-[#2A221C]/8 bg-white px-2 py-1.25 text-[10.5px] text-[#2A221C] outline-none placeholder:text-[#2A221C] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-[#2A221C]/8 bg-white px-2 py-1.25 text-[10.5px] text-[#2A221C] outline-none placeholder:text-[#2A221C] transition-all focus:border-[#D94F00]/35"
  />
  <input
  value={areaMax}
  onChange={(event) => onAreaMaxChange(event.target.value)}
  placeholder="Max Sft"
- className="rounded-[7px] border border-[#2A221C]/8 bg-white px-2 py-1.25 text-[10.5px] text-[#2A221C] outline-none placeholder:text-[#2A221C] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-[#2A221C]/8 bg-white px-2 py-1.25 text-[10.5px] text-[#2A221C] outline-none placeholder:text-[#2A221C] transition-all focus:border-[#D94F00]/35"
  />
  </div>
  </div>

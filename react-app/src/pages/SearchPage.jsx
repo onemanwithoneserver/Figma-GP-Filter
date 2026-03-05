@@ -350,7 +350,7 @@ export default function SearchPage() {
  <section
  key={mode}
  id={`preview-${mode}`}
- className={`mx-auto rounded-[7px] border bg-white transition-all duration-200 ${
+ className={`mx-auto rounded-[5px] border bg-white transition-all duration-200 ${
  previewMode === mode
  ? 'border-[#2A221C]/8'
  : 'border-[#2A221C]/8 opacity-50 hover:opacity-100'
@@ -360,8 +360,8 @@ export default function SearchPage() {
  {showModeFilters ? (
  <div className="flex flex-col gap-1.5">
  {/* Property Type Tabs + Results */}
- <div className="flex items-end gap-1.5">
- <div className="flex min-w-0 flex-1 items-end gap-1.5">
+ <div className="flex items-end">
+ <div className={mode === 'mobile' ? 'grid min-w-0 flex-1 grid-cols-4 gap-1.5' : 'flex min-w-0 flex-1 items-end gap-1.5'}>
  {PROPERTY_TYPES.map((type) => {
  const TypeIcon = PROPERTY_TYPE_ICONS[type]
  const isActive = activeType === type
@@ -371,7 +371,7 @@ export default function SearchPage() {
  key={`${mode}-${type}`}
  type="button"
  onClick={() => setActiveType(type)}
- className={`inline-flex shrink-0 flex-col items-center gap-1 rounded-[7px] px-3 py-[6px] text-[10px] font-semibold tracking-[-0.01em] transition-all duration-150 sm:px-4 sm:text-[11px] ${
+ className={`${mode === 'mobile' ? 'inline-flex w-full flex-col items-center gap-1 rounded-[5px] px-2 py-[6px] text-[10px] font-semibold tracking-[-0.01em] transition-all duration-150' : 'inline-flex shrink-0 flex-col items-center gap-1 rounded-[5px] px-3 py-[6px] text-[10px] font-semibold tracking-[-0.01em] transition-all duration-150 sm:px-4 sm:text-[11px]'} ${
  isActive
  ? 'border border-[#EE5500]/20 bg-[#EE5500]/10 text-[#EE5500]'
  : 'border border-transparent bg-[#F7F4F0]/50 text-[#2A221C] hover:bg-[#F7F4F0] hover:text-[#2A221C]'
@@ -391,7 +391,7 @@ export default function SearchPage() {
  </div>
 
  {/* Results count inline */}
- <div className="shrink-0">
+ <div className="ml-1 shrink-0 self-stretch">
  <ResultsSection results={filteredResults} />
  </div>
  </div>
@@ -409,26 +409,26 @@ export default function SearchPage() {
  <div className="flex items-center gap-1.5 pt-[2px]">
  <button
  type="button"
- className="rounded-[7px] px-3 py-[6px] text-[10.5px] font-semibold text-[#2A221C] transition-all hover:text-[#2A221C]"
+ className="rounded-[5px] px-3 py-[6px] text-[10.5px] font-semibold text-[#2A221C] transition-all hover:text-[#2A221C]"
  >
  Clear All
  </button>
  <button
  type="button"
- className="rounded-[7px] border border-[#2A221C]/8 bg-white px-3.5 py-[6px] text-[10.5px] font-semibold text-[#2A221C] transition-all hover:border-[#2A221C]/8 hover:text-[#2A221C]"
+ className="rounded-[5px] border border-[#2A221C] bg-white px-3.5 py-1.5 text-[10.5px] font-semibold text-[#2A221C] transition-all hover:border-[#2A221C]/8 hover:text-[#2A221C]"
  >
  Save Search
  </button>
  <button
  type="button"
- className="ml-auto rounded-[7px] bg-[#EE5500] px-5 py-[6px] text-[10.5px] font-bold text-white transition-all hover:bg-[#D94F00] active:scale-[0.97]"
+ className="ml-auto rounded-[5px] bg-[#EE5500] px-5 py-[6px] text-[10.5px] font-bold text-white transition-all hover:bg-[#D94F00] active:scale-[0.97]"
  >
  Show {filteredResults.length} Properties
  </button>
  </div>
  </div>
  ) : (
- <div className="rounded-[7px] border border-dashed border-[#2A221C]/8 bg-[#F7F4F0]/40 p-3 text-center text-[10.5px] font-medium text-[#2A221C]">
+ <div className="rounded-[5px] border border-dashed border-[#2A221C]/8 bg-[#F7F4F0]/40 p-3 text-center text-[10.5px] font-medium text-[#2A221C]">
  Filters collapsed — tap the filter icon to expand.
  </div>
  )}

@@ -37,6 +37,7 @@ export default function FlatsFilters({ filterState, onUpdate, openSections, onTo
  areaMax={filterState.unitAreaMax}
  onAreaMinChange={(value) => onUpdate('unitAreaMin', value)}
  onAreaMaxChange={(value) => onUpdate('unitAreaMax', value)}
+ isMobile={isMobile}
  />
  </AccordionSection>
 

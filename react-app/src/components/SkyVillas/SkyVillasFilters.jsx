@@ -37,6 +37,7 @@ export default function SkyVillasFilters({ filterState, onUpdate, openSections, 
  areaMax={filterState.unitAreaMax}
  onAreaMinChange={(value) => onUpdate('unitAreaMin', value)}
  onAreaMaxChange={(value) => onUpdate('unitAreaMax', value)}
+ isMobile={isMobile}
  />
  </AccordionSection>
 

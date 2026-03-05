@@ -13,7 +13,7 @@ export default function AccordionSection({
 }) {
  return (
  <section
- className={`group mb-0.5 rounded-[7px] border transition-all duration-200 ${
+ className={`group mb-0.5 rounded-[5px] border transition-all duration-200 ${
  highlight
  ? 'border-[#EE5500]/15 bg-[#EE5500]/2'
  : open
