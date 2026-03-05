@@ -2,9 +2,9 @@ import { CalendarClock, TimerReset } from 'lucide-react'
 import TagButton from '../common/TagButton'
 import { PROJECT_STATUS_OPTIONS, PROPERTY_AGE_OPTIONS } from '../common/filterOptions'
 
-export default function ProjectStatusFilter({ selected, onToggle, propertyAges = [], onTogglePropertyAge }) {
+export default function ProjectStatusFilter({ selected, onToggle, propertyAges = [], onTogglePropertyAge, isDesktopView = false }) {
  return (
- <div className="flex flex-col gap-2.5 pt-0.5">
+ <div className={`pt-0.5 ${isDesktopView ? 'grid grid-cols-[1fr_auto_1fr] items-start gap-2.5' : 'flex flex-col gap-2.5'}`}>
  <div className="flex flex-col gap-1">
  <div className="flex items-center gap-1.5">
  <TimerReset size={11} className="text-[#2A221C]" />
@@ -16,6 +16,7 @@ export default function ProjectStatusFilter({ selected, onToggle, propertyAges =
  ))}
  </div>
  </div>
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
  <div className="flex flex-col gap-1">
  <div className="flex items-center gap-1.5">
  <CalendarClock size={11} className="text-[#2A221C]" />

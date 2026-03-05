@@ -31,15 +31,15 @@ export default function RadiusSlider({ value, onChange }) {
  {/* Tooltip */}
  {(isHovered || isActive) && (
  <div
- className="pointer-events-none fixed z-[9999] -translate-x-1/2"
+ className="pointer-events-none fixed z-9999 -translate-x-1/2"
  style={{
  left: `${tooltipPos.x}px`,
  top: `${tooltipPos.y - 26}px`,
  }}
  >
- <div className="relative rounded-[5px] bg-[#2A221C] px-2 py-[2px] text-[9.5px] font-bold tracking-wide text-white">
+ <div className="relative rounded-[5px] bg-[#2A221C] px-2 py-0.5 text-[9.5px] font-bold tracking-wide text-white">
  {value} km
- <div className="absolute -bottom-[3px] left-1/2 h-[6px] w-[6px] -translate-x-1/2 rotate-45 bg-[#2A221C]" />
+ <div className="absolute -bottom-0.75 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rotate-45 bg-[#2A221C]" />
  </div>
  </div>
  )}
@@ -55,9 +55,9 @@ export default function RadiusSlider({ value, onChange }) {
  onTouchStart={() => { setIsActive(true); updateTooltipPos() }}
  onTouchEnd={() => setIsActive(false)}
  onChange={(e) => { onChange(Number(e.target.value)); requestAnimationFrame(updateTooltipPos) }}
- className="relative z-10 h-[4px] w-full cursor-pointer appearance-none rounded-full outline-none
- [&::-webkit-slider-thumb]:h-[14px] [&::-webkit-slider-thumb]:w-[14px] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#D94F00] [&::-webkit-slider-thumb]:border-[2.5px] [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:transition-transform active:[&::-webkit-slider-thumb]:scale-95
- [&::-moz-range-thumb]:h-[14px] [&::-moz-range-thumb]:w-[14px] [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-[#D94F00] [&::-moz-range-thumb]:border-[2.5px] [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-[0_2px_8px_rgba(217,79,0,0.25)]"
+ className="relative z-10 h-1 w-full cursor-pointer appearance-none rounded-full outline-none
+ [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#D94F00] [&::-webkit-slider-thumb]:border-[2.5px] [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:transition-transform active:[&::-webkit-slider-thumb]:scale-95
+ [&::-moz-range-thumb]:h-3.5 [&::-moz-range-thumb]:w-3.5 [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-[#D94F00] [&::-moz-range-thumb]:border-[2.5px] [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-[0_2px_8px_rgba(217,79,0,0.25)]"
  style={{
  background: `linear-gradient(to right, #D94F00 0%, #D94F00 ${percentage}%, #EAE6E1 ${percentage}%, #EAE6E1 100%)`,
  }}
@@ -65,7 +65,7 @@ export default function RadiusSlider({ value, onChange }) {
  </div>
 
  {/* Distance Label */}
- <div className="flex min-w-[40px] items-baseline justify-end gap-px text-right">
+ <div className="flex min-w-10 items-baseline justify-end gap-px text-right">
  <span className="font-['Outfit'] text-[12px] font-bold tabular-nums text-[#2A221C]">{value}</span>
  <span className="text-[9px] font-medium text-[#2A221C]">km</span>
  </div>

@@ -15,9 +15,16 @@ export default function ConfigurationFilter({
  onBuiltupMinChange,
  onBuiltupMaxChange,
  isMobile = false,
+ isDesktopView = false,
 }) {
+ const desktopLayoutClass = isDesktopView
+ ? 'grid grid-cols-[1fr_auto_1fr_auto_1fr] items-start gap-2.5'
+ : isMobile
+ ? 'grid grid-cols-1 gap-2'
+ : 'grid gap-2 lg:grid-cols-3'
+
  return (
- <div className={isMobile ? 'grid gap-2 grid-cols-1' : 'grid gap-2 lg:grid-cols-3'}>
+ <div className={desktopLayoutClass}>
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">
  <Home size={10} />
@@ -35,12 +42,14 @@ export default function ConfigurationFilter({
  </div>
  </div>
 
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">
  <LandPlot size={10} />
  Plot Size (Sq.Yd)
  </div>
- <div className={isMobile ? 'grid grid-cols-1 gap-1' : 'grid grid-cols-2 gap-1'}>
+ <div className="grid grid-cols-2 gap-1">
  <input
  value={plotMin}
  onChange={(event) => onPlotMinChange(event.target.value)}
@@ -56,12 +65,14 @@ export default function ConfigurationFilter({
  </div>
  </div>
 
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">
  <Scale size={10} />
  Builtup Area (Sft)
  </div>
- <div className={isMobile ? 'grid grid-cols-1 gap-1' : 'grid grid-cols-2 gap-1'}>
+ <div className="grid grid-cols-2 gap-1">
  <input
  value={builtupMin}
  onChange={(event) => onBuiltupMinChange(event.target.value)}

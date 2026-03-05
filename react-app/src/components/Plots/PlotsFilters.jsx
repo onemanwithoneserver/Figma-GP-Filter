@@ -10,25 +10,37 @@ import PlotTypeSaleFilter from './PlotTypeSaleFilter'
 import ProjectTypeFilter from './ProjectTypeFilter'
 import SpecialityProjects from './SpecialityProjects'
 
-export default function PlotsFilters({ filterState, onUpdate, openSections, onToggleSection, isMobile }) {
+export default function PlotsFilters({
+ filterState,
+ onUpdate,
+ openSections,
+ onToggleSection,
+ isMobile,
+ showRadiusInAccordion = isMobile,
+ isDesktopView = false,
+}) {
  const isOpen = (id) => openSections.includes(id)
 
  return (
- <div className={isMobile ? 'flex flex-col gap-y-[2px]' : 'grid grid-cols-1 gap-x-2 gap-y-[2px] lg:grid-cols-2'}>
+ <div className={isMobile ? 'flex flex-col gap-y-0.5' : 'grid grid-cols-1 gap-x-2 gap-y-0.5 lg:grid-cols-2'}>
  {/* Left Column */}
  <div className="flex flex-col">
+ {showRadiusInAccordion && (
  <AccordionSection
  title="Radius"
  icon={MapPin}
+ collapsible={!isMobile}
  open={isOpen('radius')}
  onToggle={() => onToggleSection('radius')}
  >
  <RadiusSlider value={filterState.radius} onChange={(value) => onUpdate('radius', value)} />
  </AccordionSection>
+ )}
 
  <AccordionSection
  title="Plot Size"
  icon={LandPlot}
+ collapsible={!isMobile}
  open={isOpen('plotSize')}
  onToggle={() => onToggleSection('plotSize')}
  >
@@ -40,12 +52,14 @@ export default function PlotsFilters({ filterState, onUpdate, openSections, onTo
  orrDistance={filterState.orrDistance}
  onOrrDistanceChange={(value) => onUpdate('orrDistance', value)}
  isMobile={isMobile}
+ isDesktopView={isDesktopView}
  />
  </AccordionSection>
 
  <AccordionSection
  title="Budget"
  icon={IndianRupee}
+ collapsible={!isMobile}
  open={isOpen('budget')}
  onToggle={() => onToggleSection('budget')}
  >
@@ -66,6 +80,7 @@ export default function PlotsFilters({ filterState, onUpdate, openSections, onTo
  <AccordionSection
  title="Project Type"
  icon={Building2}
+ collapsible={!isMobile}
  open={isOpen('projectType')}
  onToggle={() => onToggleSection('projectType')}
  >
@@ -81,14 +96,24 @@ export default function PlotsFilters({ filterState, onUpdate, openSections, onTo
  <AccordionSection
  title="Approvals"
  icon={BadgeCheck}
+ collapsible={!isMobile}
  open={isOpen('approvals') || isOpen('finalPermission')}
  onToggle={() => onToggleSection('approvals')}
  >
- <div className={isMobile ? 'grid gap-2 grid-cols-1' : 'grid gap-2 lg:grid-cols-2'}>
+ <div
+ className={
+ isDesktopView
+ ? 'grid grid-cols-[1fr_auto_1fr] items-start gap-2.5'
+ : isMobile
+ ? 'grid grid-cols-1 gap-2'
+ : 'grid gap-2 lg:grid-cols-2'
+ }
+ >
  <ApprovalsFilter
  selected={filterState.approvals}
  onToggle={(value) => onUpdate('approvals', value, true)}
  />
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
  <FinalLayoutPermissionFilter
  selected={filterState.finalPermissions}
  onToggle={(value) => onUpdate('finalPermissions', value, true)}
@@ -99,6 +124,7 @@ export default function PlotsFilters({ filterState, onUpdate, openSections, onTo
  <AccordionSection
  title="Plot Type & Sale"
  icon={ListFilter}
+ collapsible={!isMobile}
  open={isOpen('plotType')}
  onToggle={() => onToggleSection('plotType')}
  >
@@ -107,12 +133,14 @@ export default function PlotsFilters({ filterState, onUpdate, openSections, onTo
  selectedSaleType={filterState.saleTypes}
  onToggleType={(value) => onUpdate('plotTypes', value, true)}
  onToggleSaleType={(value) => onUpdate('saleTypes', value, true)}
+ isDesktopView={isDesktopView}
  />
  </AccordionSection>
 
  <AccordionSection
  title="Specialty Projects"
  icon={Sparkles}
+ collapsible={!isMobile}
  open={isOpen('speciality')}
  onToggle={() => onToggleSection('speciality')}
  highlight

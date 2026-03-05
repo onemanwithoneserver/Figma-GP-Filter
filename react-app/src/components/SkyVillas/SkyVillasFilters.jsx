@@ -8,25 +8,37 @@ import ProjectTypeFilter from './ProjectTypeFilter'
 import SpecialOffers from './SpecialOffers'
 import UnitAreaFilter from './UnitAreaFilter'
 
-export default function SkyVillasFilters({ filterState, onUpdate, openSections, onToggleSection, isMobile }) {
+export default function SkyVillasFilters({
+ filterState,
+ onUpdate,
+ openSections,
+ onToggleSection,
+ isMobile,
+ showRadiusInAccordion = isMobile,
+ isDesktopView = false,
+}) {
  const isOpen = (id) => openSections.includes(id)
 
  return (
- <div className={isMobile ? 'flex flex-col gap-y-[2px]' : 'grid grid-cols-1 gap-x-2 gap-y-[2px] lg:grid-cols-2'}>
+ <div className={isMobile ? 'flex flex-col gap-y-0.5' : 'grid grid-cols-1 gap-x-2 gap-y-0.5 lg:grid-cols-2'}>
  {/* Left Column */}
  <div className="flex flex-col">
+ {showRadiusInAccordion && (
  <AccordionSection
  title="Radius"
  icon={MapPin}
+ collapsible={!isMobile}
  open={isOpen('radius')}
  onToggle={() => onToggleSection('radius')}
  >
  <RadiusSlider value={filterState.radius} onChange={(value) => onUpdate('radius', value)} />
  </AccordionSection>
+ )}
 
  <AccordionSection
  title="Unit Size & Area"
  icon={Home}
+ collapsible={!isMobile}
  open={isOpen('unitSize')}
  onToggle={() => onToggleSection('unitSize')}
  >
@@ -38,12 +50,14 @@ export default function SkyVillasFilters({ filterState, onUpdate, openSections, 
  onAreaMinChange={(value) => onUpdate('unitAreaMin', value)}
  onAreaMaxChange={(value) => onUpdate('unitAreaMax', value)}
  isMobile={isMobile}
+ isDesktopView={isDesktopView}
  />
  </AccordionSection>
 
  <AccordionSection
  title="Budget"
  icon={IndianRupee}
+ collapsible={!isMobile}
  open={isOpen('budget')}
  onToggle={() => onToggleSection('budget')}
  >
@@ -65,6 +79,7 @@ export default function SkyVillasFilters({ filterState, onUpdate, openSections, 
  <AccordionSection
  title="Project Type"
  icon={Building2}
+ collapsible={!isMobile}
  open={isOpen('projectType')}
  onToggle={() => onToggleSection('projectType')}
  >
@@ -77,6 +92,7 @@ export default function SkyVillasFilters({ filterState, onUpdate, openSections, 
  <AccordionSection
  title="Project Status & Age"
  icon={CalendarDays}
+ collapsible={!isMobile}
  open={isOpen('projectStatus')}
  onToggle={() => onToggleSection('projectStatus')}
  >
@@ -85,12 +101,14 @@ export default function SkyVillasFilters({ filterState, onUpdate, openSections, 
  onToggle={(value) => onUpdate('projectStatuses', value, true)}
  propertyAges={filterState.propertyAges}
  onTogglePropertyAge={(value) => onUpdate('propertyAges', value, true)}
+ isDesktopView={isDesktopView}
  />
  </AccordionSection>
 
  <AccordionSection
  title="Special Offers"
  icon={Sparkles}
+ collapsible={!isMobile}
  open={isOpen('specialOffers')}
  onToggle={() => onToggleSection('specialOffers')}
  highlight

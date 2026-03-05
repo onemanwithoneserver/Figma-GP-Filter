@@ -142,9 +142,16 @@ export default function PlotSizeFilter({
  orrDistance,
  onOrrDistanceChange,
  isMobile = false,
+ isDesktopView = false,
 }) {
+ const layoutClass = isDesktopView
+ ? 'grid grid-cols-[1fr_auto_1fr_auto_1fr] items-start gap-2.5'
+ : isMobile
+ ? 'grid grid-cols-2 gap-2'
+ : 'grid gap-2 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-end'
+
  return (
- <div className={isMobile ? 'grid gap-2 grid-cols-1' : 'grid gap-2 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-end'}>
+ <div className={layoutClass}>
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
  <LandPlot size={10} />
@@ -158,7 +165,10 @@ export default function PlotSizeFilter({
  />
  </div>
 
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+ {!isDesktopView && (
  <span className={isMobile ? 'hidden' : 'hidden text-[10px] text-[var(--dark)] lg:block'}>–</span>
+ )}
 
  <div>
  <div className="mb-1 text-[10px] font-semibold text-transparent">spacer</div>
@@ -170,9 +180,12 @@ export default function PlotSizeFilter({
  />
  </div>
 
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+ {!isDesktopView && (
  <span className={isMobile ? 'hidden' : 'hidden text-[10px] text-[var(--dark)] lg:block'}>–</span>
+ )}
 
- <div>
+ <div className={isMobile ? 'col-span-2' : ''}>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
  <Route size={10} />
  Distance from ORR

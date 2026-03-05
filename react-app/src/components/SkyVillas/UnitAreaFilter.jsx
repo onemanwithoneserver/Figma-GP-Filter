@@ -2,9 +2,24 @@ import { Ruler, Scale } from 'lucide-react'
 import TagButton from '../common/TagButton'
 import { UNIT_SIZE_OPTIONS } from '../common/filterOptions'
 
-export default function UnitAreaFilter({ selected, onToggle, areaMin, areaMax, onAreaMinChange, onAreaMaxChange, isMobile = false }) {
+export default function UnitAreaFilter({
+ selected,
+ onToggle,
+ areaMin,
+ areaMax,
+ onAreaMinChange,
+ onAreaMaxChange,
+ isMobile = false,
+ isDesktopView = false,
+}) {
+ const layoutClass = isDesktopView
+ ? 'grid grid-cols-[1fr_auto_1fr] items-start gap-2.5'
+ : isMobile
+ ? 'grid grid-cols-1 gap-2'
+ : 'grid gap-2 lg:grid-cols-[1fr_auto_1fr] lg:items-end'
+
  return (
- <div className={isMobile ? 'grid gap-2 grid-cols-1' : 'grid gap-2 lg:grid-cols-[1fr_auto_1fr] lg:items-end'}>
+ <div className={layoutClass}>
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
  <Ruler size={10} />
@@ -22,14 +37,17 @@ export default function UnitAreaFilter({ selected, onToggle, areaMin, areaMax, o
  </div>
  </div>
 
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+ {!isDesktopView && (
  <span className={isMobile ? 'hidden' : 'hidden text-[10px] text-[var(--dark)] lg:block'}>–</span>
+ )}
 
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
  <Scale size={10} />
  Unit Area (Sft)
  </div>
- <div className={isMobile ? 'grid grid-cols-1 gap-1' : 'grid grid-cols-1 gap-1 sm:grid-cols-2'}>
+ <div className="grid grid-cols-2 gap-1">
  <input
  value={areaMin}
  onChange={(event) => onAreaMinChange(event.target.value)}

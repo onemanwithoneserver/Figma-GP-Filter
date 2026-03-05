@@ -2,11 +2,17 @@ import { Landmark, ReceiptText } from 'lucide-react'
 import TagButton from '../common/TagButton'
 import { PLOT_SALE_TYPE_OPTIONS, PLOT_TYPE_OPTIONS } from '../common/filterOptions'
 
-export default function PlotTypeSaleFilter({ selectedType, selectedSaleType, onToggleType, onToggleSaleType }) {
+export default function PlotTypeSaleFilter({
+ selectedType,
+ selectedSaleType,
+ onToggleType,
+ onToggleSaleType,
+ isDesktopView = false,
+}) {
  return (
- <>
- <div className="mb-2">
- <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
+ <div className={isDesktopView ? 'grid grid-cols-[1fr_auto_1fr] items-start gap-2.5' : ''}>
+ <div className={isDesktopView ? '' : 'mb-2'}>
+ <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">
  <Landmark size={10} />
  Plot Type
  </div>
@@ -22,8 +28,10 @@ export default function PlotTypeSaleFilter({ selectedType, selectedSaleType, onT
  </div>
  </div>
 
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+
  <div>
- <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-[var(--dark)]">
+ <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">
  <ReceiptText size={10} />
  Sale Type
  </div>
@@ -38,6 +46,6 @@ export default function PlotTypeSaleFilter({ selectedType, selectedSaleType, onT
  ))}
  </div>
  </div>
- </>
+ </div>
  )
 }
