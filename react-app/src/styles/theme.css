@@ -1,8 +1,8 @@
 /* ─── Premium Design System ─── */
 :root {
   /* Core palette — refined warm neutrals */
-  --primary: #2A2118;
-  --dark: #2A2118;
+  --primary: #2A221C;
+  --dark: #2A221C;
   --bg: #F7F4F0;
   --bg-warm: #EFEBE4;
   --white: #FFFFFF;
@@ -26,19 +26,19 @@
   --gray-700: #3D362F;
 
   /* Shadows — layered for depth */
-  --shadow-xs: 0 1px 2px rgba(42, 33, 24, 0.05);
-  --shadow-sm: 0 1px 3px rgba(42, 33, 24, 0.07), 0 1px 2px rgba(42, 33, 24, 0.04);
-  --shadow-md: 0 4px 8px -2px rgba(42, 33, 24, 0.08), 0 2px 4px -2px rgba(42, 33, 24, 0.04);
-  --shadow-lg: 0 12px 24px -4px rgba(42, 33, 24, 0.10), 0 4px 8px -4px rgba(42, 33, 24, 0.05);
-  --shadow-xl: 0 20px 40px -8px rgba(42, 33, 24, 0.12), 0 8px 16px -6px rgba(42, 33, 24, 0.06);
-  --shadow-dropdown: 0 8px 24px -4px rgba(42, 33, 24, 0.14), 0 4px 8px rgba(42, 33, 24, 0.06);
+  --shadow-xs: 0 1px 2px rgb(42,33,24);
+  --shadow-sm: 0 1px 3px rgb(42,33,24), 0 1px 2px rgb(42,33,24);
+  --shadow-md: 0 4px 8px -2px rgb(42,33,24), 0 2px 4px -2px rgb(42,33,24);
+  --shadow-lg: 0 12px 24px -4px rgb(42,33,24), 0 4px 8px -4px rgb(42,33,24);
+  --shadow-xl: 0 20px 40px -8px rgb(42,33,24), 0 8px 16px -6px rgb(42,33,24);
+  --shadow-dropdown: 0 8px 24px -4px rgb(42,33,24), 0 4px 8px rgb(42,33,24);
   --shadow-accent: 0 2px 8px rgba(217, 79, 0, 0.18), 0 1px 3px rgba(217, 79, 0, 0.10);
   --shadow-accent-lg: 0 4px 16px rgba(217, 79, 0, 0.22), 0 2px 6px rgba(217, 79, 0, 0.12);
 
   /* Border tokens */
-  --border-subtle: rgba(42, 33, 24, 0.06);
-  --border-default: rgba(42, 33, 24, 0.10);
-  --border-strong: rgba(42, 33, 24, 0.16);
+  --border-subtle: rgb(42,33,24);
+  --border-default: rgb(42,33,24);
+  --border-strong: rgb(42,33,24);
 
   /* Transitions — premium easing */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);

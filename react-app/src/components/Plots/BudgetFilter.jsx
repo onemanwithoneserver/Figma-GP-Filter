@@ -1,5 +1,5 @@
 import BudgetFilter from '../common/BudgetFilter'
 
 export default function PlotsBudgetFilter() {
-  return <BudgetFilter />
+ return <BudgetFilter />
 }
