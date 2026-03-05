@@ -62,9 +62,9 @@ function OrrDistanceSelect({ value, onChange }) {
  ref={triggerRef}
  type="button"
  onClick={() => setOpen((previous) => !previous)}
- className={`group flex w-full items-center justify-between rounded-[5px] border bg-[#FFFFFF] px-2 py-[5px] pr-7 text-[10.5px] font-medium outline-none transition-all duration-150 focus:ring-2 focus:ring-[#D94F00]/8 ${
+ className={`group flex w-full items-center justify-between rounded-[5px] border bg-[#FFFFFF] px-2 py-[5px] pr-7 text-[10.5px] font-medium outline-none transition-all duration-150 focus:ring-2 focus:ring-[#FF6A00]/8 ${
  open
- ? 'border-[#D94F00]/35'
+ ? 'border-[#FF6A00]/35'
  : 'border-[var(--dark)]/8 hover:border-[var(--dark)]/8'
  }`}
  >
@@ -72,7 +72,7 @@ function OrrDistanceSelect({ value, onChange }) {
  <ChevronDown
  size={12}
  className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 transition-all duration-150 ${
- open ? 'rotate-180 text-[#D94F00]/60' : 'text-[var(--dark)]'
+ open ? 'rotate-180 text-[#FF6A00]/60' : 'text-[var(--dark)]'
  }`}
  />
  </button>
@@ -97,8 +97,8 @@ function OrrDistanceSelect({ value, onChange }) {
  onClick={() => handleSelect('')}
  className={`flex w-full items-center gap-2 px-2.5 py-[5px] text-left text-[10.5px] transition-colors duration-100 ${
  !value
- ? 'bg-[#D94F00]/[0.04] font-semibold text-[#D94F00]'
- : 'text-[var(--dark)] hover:bg-[#F7F4F0]/70'
+ ? 'bg-[#FF6A00]/[0.04] font-semibold text-[#FF6A00]'
+ : 'text-[var(--dark)] hover:bg-[#F7F7F7]/70'
  }`}
  >
  <Check size={11} className={`shrink-0 ${!value ? 'opacity-100' : 'opacity-0'}`} />
@@ -116,11 +116,11 @@ function OrrDistanceSelect({ value, onChange }) {
  onClick={() => handleSelect(option)}
  className={`flex w-full items-center gap-2 px-2.5 py-[5px] text-left text-[10.5px] transition-colors duration-100 ${
  isActive
- ? 'bg-[#D94F00]/[0.05] font-semibold text-[#D94F00]'
- : 'text-[var(--dark)] hover:bg-[#F7F4F0]/70'
+ ? 'bg-[#FF6A00]/[0.05] font-semibold text-[#FF6A00]'
+ : 'text-[var(--dark)] hover:bg-[#F7F7F7]/70'
  }`}
  >
- <Check size={11} className={`shrink-0 ${isActive ? 'opacity-100 text-[#D94F00]' : 'opacity-0'}`} />
+ <Check size={11} className={`shrink-0 ${isActive ? 'opacity-100 text-[#FF6A00]' : 'opacity-0'}`} />
  {option}
  </button>
  </li>
@@ -161,11 +161,11 @@ export default function PlotSizeFilter({
  value={plotMin}
  onChange={(event) => onPlotMinChange(event.target.value)}
  placeholder="Min"
- className="w-full rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="w-full rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#FF6A00]/35"
  />
  </div>
 
- {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#1E1E1E]/12" />}
  {!isDesktopView && (
  <span className={isMobile ? 'hidden' : 'hidden text-[10px] text-[var(--dark)] lg:block'}>–</span>
  )}
@@ -176,11 +176,11 @@ export default function PlotSizeFilter({
  value={plotMax}
  onChange={(event) => onPlotMaxChange(event.target.value)}
  placeholder="Max"
- className="w-full rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="w-full rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#FF6A00]/35"
  />
  </div>
 
- {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#1E1E1E]/12" />}
  {!isDesktopView && (
  <span className={isMobile ? 'hidden' : 'hidden text-[10px] text-[var(--dark)] lg:block'}>–</span>
  )}

@@ -13,8 +13,8 @@ export default function SpecialOffers({ selected, onToggle }) {
  onClick={() => onToggle(offer)}
  className={`rounded-[5px] border px-2 py-[3px] text-[10.5px] font-medium tracking-[-0.01em] transition-all duration-150 ${
  isSelected
- ? 'border-[#8C6239] bg-[#8C6239] text-white'
- : 'border-[#2A221C]/8 bg-[#FAFAF9] text-[#2A221C] hover:border-[#8C6239]/35 hover:bg-[#8C6239]/6 hover:text-[#8C6239]'
+ ? 'border-[#F59E0B] bg-[#F59E0B] text-white'
+ : 'border-[#1E1E1E]/8 bg-[#FFFFFF] text-[#1E1E1E] hover:border-[#F59E0B]/35 hover:bg-[#F59E0B]/6 hover:text-[#F59E0B]'
  }`}
  >
  {offer}

@@ -37,7 +37,7 @@ export default function UnitAreaFilter({
  </div>
  </div>
 
- {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#1E1E1E]/12" />}
  {!isDesktopView && (
  <span className={isMobile ? 'hidden' : 'hidden text-[10px] text-[var(--dark)] lg:block'}>–</span>
  )}
@@ -52,13 +52,13 @@ export default function UnitAreaFilter({
  value={areaMin}
  onChange={(event) => onAreaMinChange(event.target.value)}
  placeholder="Min Sft"
- className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#FF6A00]/35"
  />
  <input
  value={areaMax}
  onChange={(event) => onAreaMaxChange(event.target.value)}
  placeholder="Max Sft"
- className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-[var(--dark)]/8 bg-white px-2 py-[5px] text-[10.5px] text-[var(--dark)] outline-none placeholder:text-[var(--dark)] transition-all focus:border-[#FF6A00]/35"
  />
  </div>
  </div>

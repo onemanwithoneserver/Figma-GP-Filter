@@ -42,7 +42,7 @@ export default function ConfigurationFilter({
  </div>
  </div>
 
- {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#1E1E1E]/12" />}
 
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">
@@ -54,18 +54,18 @@ export default function ConfigurationFilter({
  value={plotMin}
  onChange={(event) => onPlotMinChange(event.target.value)}
  placeholder="Min"
- className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#FF6A00]/35"
  />
  <input
  value={plotMax}
  onChange={(event) => onPlotMaxChange(event.target.value)}
  placeholder="Max"
- className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#FF6A00]/35"
  />
  </div>
  </div>
 
- {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#1E1E1E]/12" />}
 
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">
@@ -77,13 +77,13 @@ export default function ConfigurationFilter({
  value={builtupMin}
  onChange={(event) => onBuiltupMinChange(event.target.value)}
  placeholder="Min"
- className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#FF6A00]/35"
  />
  <input
  value={builtupMax}
  onChange={(event) => onBuiltupMaxChange(event.target.value)}
  placeholder="Max"
- className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#D94F00]/35"
+ className="rounded-[5px] border border-(--dark)/8 bg-white px-2 py-1.25 text-[10.5px] text-(--dark) outline-none placeholder:text-(--dark) transition-all focus:border-[#FF6A00]/35"
  />
  </div>
  </div>

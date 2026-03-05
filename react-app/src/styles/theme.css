@@ -1,44 +1,64 @@
 /* ─── Premium Design System ─── */
 :root {
-  /* Core palette — refined warm neutrals */
-  --primary: #2A221C;
-  --dark: #2A221C;
-  --bg: #F7F4F0;
-  --bg-warm: #EFEBE4;
-  --white: #FFFFFF;
-  --accent: #D94F00;
-  --accent-light: #FF6D1F;
-  --accent-hover: #C24500;
-  --accent-glow: rgba(217, 79, 0, 0.10);
+  /* Primary brand scale */
+  --primary-900: #7A2E0E;
+  --primary-700: #A5431C;
+  --primary-500: #FF6A00;
+  --primary-300: #FFA366;
+  --primary-100: #FFE6D5;
+  --primary-hover: #E85F00;
+  --primary-pressed: #C94F00;
 
-  /* Success / info */
-  --success: #1B8A3E;
-  --success-bg: rgba(27, 138, 62, 0.06);
+  /* Neutral scale */
+  --neutral-900: #1E1E1E;
+  --neutral-700: #4B4B4B;
+  --neutral-500: #8C8C8C;
+  --neutral-300: #D9D9D9;
+  --neutral-200: #ECECEC;
+  --neutral-100: #F7F7F7;
+  --neutral-0: #FFFFFF;
 
-  /* Neutral scale — refined for depth */
-  --gray-50: #FBFAF9;
-  --gray-100: #F5F3F0;
-  --gray-200: #EAE6E1;
-  --gray-300: #D6D1CA;
-  --gray-400: #B0A99F;
-  --gray-500: #827B73;
-  --gray-600: #5E5750;
-  --gray-700: #3D362F;
+  /* Semantic accents */
+  --success: #16A34A;
+  --warning: #F59E0B;
+  --error: #DC2626;
+  --info: #2563EB;
+
+  /* Legacy aliases kept for compatibility in existing components */
+  --primary: var(--primary-500);
+  --dark: var(--neutral-900);
+  --bg: var(--neutral-100);
+  --bg-warm: var(--neutral-200);
+  --white: var(--neutral-0);
+  --accent: var(--primary-500);
+  --accent-light: var(--primary-300);
+  --accent-hover: var(--primary-hover);
+  --accent-glow: rgba(255, 106, 0, 0.1);
+
+  /* Legacy gray aliases kept for compatibility */
+  --gray-50: var(--neutral-100);
+  --gray-100: var(--neutral-100);
+  --gray-200: var(--neutral-200);
+  --gray-300: var(--neutral-300);
+  --gray-400: var(--neutral-500);
+  --gray-500: var(--neutral-500);
+  --gray-600: var(--neutral-700);
+  --gray-700: var(--neutral-900);
 
   /* Shadows — layered for depth */
-  --shadow-xs: 0 1px 2px rgb(42,33,24);
-  --shadow-sm: 0 1px 3px rgb(42,33,24), 0 1px 2px rgb(42,33,24);
-  --shadow-md: 0 4px 8px -2px rgb(42,33,24), 0 2px 4px -2px rgb(42,33,24);
-  --shadow-lg: 0 12px 24px -4px rgb(42,33,24), 0 4px 8px -4px rgb(42,33,24);
-  --shadow-xl: 0 20px 40px -8px rgb(42,33,24), 0 8px 16px -6px rgb(42,33,24);
-  --shadow-dropdown: 0 8px 24px -4px rgb(42,33,24), 0 4px 8px rgb(42,33,24);
-  --shadow-accent: 0 2px 8px rgba(217, 79, 0, 0.18), 0 1px 3px rgba(217, 79, 0, 0.10);
-  --shadow-accent-lg: 0 4px 16px rgba(217, 79, 0, 0.22), 0 2px 6px rgba(217, 79, 0, 0.12);
+  --shadow-xs: 0 1px 2px rgba(30, 30, 30, 0.08);
+  --shadow-sm: 0 1px 3px rgba(30, 30, 30, 0.1), 0 1px 2px rgba(30, 30, 30, 0.06);
+  --shadow-md: 0 4px 8px -2px rgba(30, 30, 30, 0.15), 0 2px 4px -2px rgba(30, 30, 30, 0.1);
+  --shadow-lg: 0 12px 24px -4px rgba(30, 30, 30, 0.18), 0 4px 8px -4px rgba(30, 30, 30, 0.14);
+  --shadow-xl: 0 20px 40px -8px rgba(30, 30, 30, 0.2), 0 8px 16px -6px rgba(30, 30, 30, 0.16);
+  --shadow-dropdown: 0 8px 24px -4px rgba(30, 30, 30, 0.18), 0 4px 8px rgba(30, 30, 30, 0.12);
+  --shadow-accent: 0 2px 8px rgba(255, 106, 0, 0.18), 0 1px 3px rgba(255, 106, 0, 0.10);
+  --shadow-accent-lg: 0 4px 16px rgba(255, 106, 0, 0.22), 0 2px 6px rgba(255, 106, 0, 0.12);
 
   /* Border tokens */
-  --border-subtle: rgb(42,33,24);
-  --border-default: rgb(42,33,24);
-  --border-strong: rgb(42,33,24);
+  --border-subtle: var(--neutral-200);
+  --border-default: var(--neutral-200);
+  --border-strong: var(--neutral-300);
 
   /* Transitions — premium easing */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -76,6 +96,15 @@ body {
   letter-spacing: -0.008em;
 }
 
+#root,
+input,
+textarea,
+select,
+option,
+button {
+  font-family: var(--font-sans);
+}
+
 /* ─── Premium Scrollbar ─── */
 ::-webkit-scrollbar {
   width: 5px;
@@ -110,7 +139,7 @@ body {
 
 /* ─── Selection ─── */
 ::selection {
-  background: rgba(217, 79, 0, 0.14);
+  background: rgba(255, 106, 0, 0.14);
   color: var(--dark);
 }
 
@@ -167,8 +196,53 @@ input[type='range']::-moz-range-thumb {
 input[type='text']:focus,
 input[type='number']:focus,
 select:focus {
-  border-color: rgba(217, 79, 0, 0.35) !important;
-  box-shadow: 0 0 0 3px rgba(217, 79, 0, 0.08);
+  border-color: rgba(255, 106, 0, 0.35) !important;
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.08);
+}
+
+/* Shared component tokens */
+.chip-token {
+  background: var(--neutral-0);
+  border: 1px solid var(--neutral-200);
+  color: var(--neutral-700);
+}
+
+.chip-token:hover {
+  background: #FFF3EB;
+  border-color: var(--primary-500);
+}
+
+.chip-token[data-selected='true'] {
+  background: var(--primary-100);
+  border-color: var(--primary-500);
+  color: var(--primary-900);
+}
+
+.chip-token:disabled,
+.chip-token[aria-disabled='true'] {
+  background: var(--neutral-100);
+  border-color: var(--neutral-200);
+  color: #B5B5B5;
+  cursor: not-allowed;
+}
+
+.btn-primary-token {
+  background: var(--primary-500);
+  color: var(--neutral-0);
+}
+
+.btn-primary-token:hover {
+  background: var(--primary-hover);
+}
+
+.btn-primary-token:active {
+  background: var(--primary-pressed);
+}
+
+.btn-secondary-token {
+  background: var(--neutral-0);
+  border: 1px solid var(--neutral-200);
+  color: var(--neutral-900);
 }
 
 /* ─── Button Base ─── */

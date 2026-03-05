@@ -28,7 +28,7 @@ export default function PlotTypeSaleFilter({
  </div>
  </div>
 
- {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#2A221C]/12" />}
+ {isDesktopView && <div className="mt-0.5 h-full w-px bg-[#1E1E1E]/12" />}
 
  <div>
  <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wide text-(--dark)">

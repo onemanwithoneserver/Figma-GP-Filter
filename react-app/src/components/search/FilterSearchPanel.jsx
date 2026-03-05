@@ -1,84 +1,44 @@
-import { Heart, LocateFixed, Search, SlidersHorizontal, X } from 'lucide-react'
+import { Heart, LocateFixed, Search, SlidersHorizontal } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-const TRENDING_SEARCHES = [
-  'Rental Offer at Hyderabad - Flats',
-  'One Time Payment - Flats',
-  'Future City - Plots',
-  'Luxury Villas - Outside ORR',
-]
-
-const RECENT_SEARCHES = [
-  'Kompally flats',
-  'Gachibowli Villas',
-  'Kukatpally Flats',
-  'Suchitra flats',
-]
-
-const SAVED_SEARCHES = ['Ready to Move 3BHK near office', 'Flats near suchitra']
-
-const SEARCHABLE_PROJECTS = [
-  'Urban Nest Residency - Madhapur',
-  'Skyline Heights - Kokapet',
-  'Cloud Crest Sky Villas - Financial District',
-  'Aero Signature - Narsingi',
-  'Olive Garden Villas - Kompally',
-  'Prime Grove - Tellapur',
-  'Green Avenue Plots - Shadnagar',
-  'Eco Harvest Lands - Yacharam',
-]
+const TRENDING_SEARCHES = ['Flats in Hyderabad', 'Plots in Future City', 'Luxury Villas']
+const RECENT_SEARCHES = ['Kompally flats', 'Gachibowli Villas']
+const SAVED_SEARCHES = ['3BHK near office', 'Flats near Suchitra']
+const SEARCHABLE_PROJECTS = ['Urban Nest - Madhapur', 'Skyline - Kokapet', 'Aero - Narsingi']
 
 const filterEntries = (entries, query) => {
-  if (!query) {
-    return entries
-  }
-
+  if (!query) return entries
   const normalizedQuery = query.trim().toLowerCase()
   return entries.filter((item) => item.toLowerCase().includes(normalizedQuery))
 }
 
 function SearchRow({ label, showFavorite = true, showRemove = true }) {
   return (
-    <li className="grid grid-cols-[1fr_auto_auto] items-center gap-2 rounded-[5px] px-1.5 py-0.5 text-[10px] leading-4 text-[#2A221C] transition-colors duration-150 hover:bg-[#F7F4F0]">
-      <span className="truncate" title={label}>{label}</span>
-      {showFavorite ? (
-        <button
-          type="button"
-          aria-label={`Favorite ${label}`}
-          className="inline-flex h-4 w-4 items-center justify-center rounded-[5px] text-[#5E5750] transition-all duration-150 hover:bg-white hover:text-[#EE5500]"
-        >
-          <Heart size={11} fill="currentColor" />
-        </button>
-      ) : (
-        <span />
-      )}
-      {showRemove ? (
-        <button
-          type="button"
-          aria-label={`Remove ${label}`}
-          className="inline-flex h-4 w-4 items-center justify-center rounded-[5px] text-[#5E5750] transition-all duration-150 hover:bg-white hover:text-[#2A221C]"
-        >
-          <X size={11} />
-        </button>
-      ) : (
-        <span />
+    <li className="group flex items-center justify-between gap-4 rounded-[6px] p-1.5 text-[15px] font-normal text-[#333333] transition-colors duration-200 hover:bg-[#FFF3EB]">
+      <span className="flex items-center gap-2 truncate" title={label}>
+        <span className="h-[6px] w-[6px] shrink-0 rounded-full bg-[#FF6A00]" />
+        {label}
+      </span>
+      {showFavorite && showRemove && (
+        <div className="flex items-center gap-4 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+          <button className="flex items-center justify-center rounded-[5px] p-1 text-[#8C8C8C] transition-colors hover:text-[#FF6A00]">
+            <Heart size={14} strokeWidth={1.75} />
+          </button>
+          <button className="text-[13px] font-medium text-[#8C8C8C] transition-colors hover:text-[#FF6A00]">Remove</button>
+        </div>
       )}
     </li>
   )
 }
 
-function SearchGroup({ title, entries, showActions = true }) {
+function SearchGroup({ title, entries, showActions = true, hasDivider = false }) {
+  if (entries.length === 0) return null;
   return (
-    <section className="flex flex-col gap-1">
-      <h4 className="text-[11px] font-semibold text-[#2A221C]">{title}</h4>
-      <ul className="flex flex-col gap-0.5">
+    <section className={`flex flex-col gap-1 ${hasDivider ? 'border-t border-[#ECECEC] pt-1' : ''}`}>
+      <h4 className="px-2 py-1 text-[16px] font-semibold text-[#1E1E1E]">{title}</h4>
+      <ul className="flex flex-col gap-1">
         {entries.map((item) => (
-          <SearchRow
-            key={`${title}-${item}`}
-            label={item}
-            showFavorite={showActions}
-            showRemove={showActions}
-          />
+          <SearchRow key={`${title}-${item}`} label={item} showFavorite={showActions} showRemove={showActions} />
         ))}
       </ul>
     </section>
@@ -90,99 +50,81 @@ export default function FilterSearchPanel({ onOpenFilters, autoFocusInput = fals
   const [isSearchFocused, setIsSearchFocused] = useState(false)
   const inputRef = useRef(null)
 
-  const trendingEntries = useMemo(
-    () => filterEntries(TRENDING_SEARCHES, searchText),
-    [searchText],
-  )
-  const recentEntries = useMemo(
-    () => filterEntries(RECENT_SEARCHES, searchText),
-    [searchText],
-  )
-  const savedEntries = useMemo(
-    () => filterEntries(SAVED_SEARCHES, searchText),
-    [searchText],
-  )
-  const matchedResults = useMemo(
-    () => filterEntries(SEARCHABLE_PROJECTS, searchText),
-    [searchText],
-  )
+  const trendingEntries = useMemo(() => filterEntries(TRENDING_SEARCHES, searchText), [searchText])
+  const recentEntries = useMemo(() => filterEntries(RECENT_SEARCHES, searchText), [searchText])
+  const savedEntries = useMemo(() => filterEntries(SAVED_SEARCHES, searchText), [searchText])
+  const matchedResults = useMemo(() => filterEntries(SEARCHABLE_PROJECTS, searchText), [searchText])
 
   const hasQuery = Boolean(searchText.trim())
   const showSuggestions = isSearchFocused
-  const hasSuggestionData =
-    trendingEntries.length > 0 ||
-    recentEntries.length > 0 ||
-    savedEntries.length > 0 ||
-    (hasQuery && matchedResults.length > 0)
 
   useEffect(() => {
-    if (autoFocusInput) {
-      inputRef.current?.focus()
-    }
+    if (autoFocusInput) inputRef.current?.focus()
   }, [autoFocusInput])
 
   return (
-    <div className="relative flex flex-col gap-2">
-      <div className="flex min-h-14 items-center gap-2 rounded-[5px] border border-[#2A221C]/10 bg-[#F7F4F0] px-2 shadow-[0_1px_2px_rgba(42,34,28,0.06)]">
-        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[5px] bg-[#FFF2E7] text-[#EE5500]">
-          <LocateFixed size={14} />
-        </span>
+    <div className="relative mx-auto w-full max-w-xl">
+      <div 
+        className={`flex items-center gap-2 rounded-[5px] border bg-[#FFFFFF] p-1 transition-all duration-300
+          ${isSearchFocused 
+            ? 'border-2 border-[#FF6A00] shadow-[0_0_0_2px_rgba(255,106,0,0.15)]' 
+            : 'border-[#ECECEC] shadow-sm hover:border-[#D9D9D9] hover:bg-white'
+          }`}
+      >
+        <div className="m-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-[5px] bg-[#FF6A00]/10 text-[#FF6A00]">
+          <LocateFixed size={14} strokeWidth={1.5} />
+        </div>
 
         <input
           ref={inputRef}
           type="text"
           value={searchText}
-          onChange={(event) => setSearchText(event.target.value)}
+          onChange={(e) => setSearchText(e.target.value)}
           onFocus={() => setIsSearchFocused(true)}
-          onBlur={() => {
-            // Delay blur updates so suggestion row buttons remain clickable.
-            window.setTimeout(() => setIsSearchFocused(false), 120)
-          }}
-          placeholder="Search places, projects..."
-          aria-label="Search places and projects"
-          className="h-full min-w-0 flex-1 border-0 bg-transparent text-[12px] font-medium text-[#2A221C] placeholder:text-[#A89F95] focus:outline-none"
+          onBlur={() => window.setTimeout(() => setIsSearchFocused(false), 200)}
+          placeholder="Search locations, projects, or builders"
+          className="h-full flex-1 bg-transparent px-1 text-[14px] font-medium tracking-wide text-[#1E1E1E] placeholder:font-light placeholder:text-[#1E1E1E]/40 focus:outline-none"
         />
 
-        {!isSearchFocused && (
+        <div className="m-1 flex items-center gap-1">
           <button
-            type="button"
-            onClick={() => {
-              setIsSearchFocused(false)
-              onOpenFilters?.()
-            }}
-            aria-label="Open search filters"
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[5px] border border-[#2A221C]/10 bg-[#F7F4F0] text-[#5E5750] transition-all duration-150 hover:border-[#EE5500]/20 hover:bg-[#FFF2E7] hover:text-[#EE5500]"
+            onClick={() => onOpenFilters?.()}
+            className="flex h-8 w-8 items-center justify-center rounded-[5px] text-[#FF6A00] transition-colors hover:bg-[#E85F00]/10"
           >
-            <SlidersHorizontal size={14} />
+            <SlidersHorizontal size={14} strokeWidth={1.5} />
           </button>
-        )}
-
-        <button
-          type="button"
-          aria-label="Run search"
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[5px] border border-[#2A221C]/10 bg-[#F7F4F0] text-[#5E5750] transition-all duration-150 hover:border-[#EE5500]/20 hover:bg-[#FFF2E7] hover:text-[#EE5500]"
-        >
-          <Search size={14} />
-        </button>
+          
+          <button
+            className="flex h-8 w-8 items-center justify-center rounded-[5px] bg-[#FF6A00] text-white transition-colors hover:bg-[#E85F00]/90 active:bg-[#C94F00]"
+          >
+            <Search size={14} strokeWidth={2} />
+          </button>
+        </div>
       </div>
 
       {showSuggestions && (
-        <div className="absolute top-full right-0 left-0 z-40 mt-2 flex max-h-[320px] flex-col gap-3 overflow-auto rounded-[5px] border border-[#2A221C]/8 bg-white p-2.5 shadow-[0_6px_16px_rgba(42,34,28,0.12)]">
-          {hasQuery && matchedResults.length > 0 && (
-            <SearchGroup title="Search results" entries={matchedResults.slice(0, 5)} />
-          )}
+        <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-[5px] border border-[#1E1E1E]/10 bg-white/95 backdrop-blur-xl shadow-[0_20px_40px_rgba(30,30,30,0.12)]">
+          <div className="custom-scrollbar flex max-h-[320px] flex-col gap-2 overflow-auto p-2">
+            
+            {hasQuery && matchedResults.length > 0 && (
+              <SearchGroup title="Top Matches" entries={matchedResults.slice(0, 5)} />
+            )}
 
-          {trendingEntries.length > 0 && <SearchGroup title="Trending" entries={trendingEntries} />}
-          {recentEntries.length > 0 && <SearchGroup title="Recent" entries={recentEntries} />}
-          {savedEntries.length > 0 && (
-            <SearchGroup title="Saved" entries={savedEntries} showActions={false} />
-          )}
+            <SearchGroup title="Trending Now" entries={trendingEntries} hasDivider={hasQuery && matchedResults.length > 0} />
+            <SearchGroup title="Recent Searches" entries={recentEntries} hasDivider={trendingEntries.length > 0 || (hasQuery && matchedResults.length > 0)} />
+            <SearchGroup title="Saved Searches" entries={savedEntries} showActions={false} hasDivider={recentEntries.length > 0 || trendingEntries.length > 0 || (hasQuery && matchedResults.length > 0)} />
 
-          {!hasSuggestionData && (
-            <p className="rounded-[5px] bg-[#F7F4F0] px-2 py-1.5 text-[10px] font-medium text-[#5E5750]">
-              No matching suggestions.
-            </p>
-          )}
+            {(!hasQuery && trendingEntries.length === 0) && (
+              <div className="m-2 p-2 text-center">
+                <p className="text-[13px] font-light text-[#1E1E1E]/50">Start typing to find properties</p>
+              </div>
+            )}
+          </div>
+          
+          <div className="flex items-center justify-between border-t border-[#1E1E1E]/5 bg-[#FFFFFF] p-2">
+             <span className="ml-1 text-[11px] font-bold tracking-wide text-[#FF6A00]">Premium Search</span>
+             <span className="mr-1 text-[13px] text-[#8C8C8C]">Press ESC to close</span>
+          </div>
         </div>
       )}
     </div>
