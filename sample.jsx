@@ -891,7 +891,7 @@ export function InPatientDashboard() {
                         <Cell key={`cell-service-${entry.name}-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip formatter={(value: number) => `₹${value.toLocaleString()}`} />
+                    <Tooltip formatter={(value) => `₹${value.toLocaleString()}`} />
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="mt-4 grid grid-cols-2 gap-2">
@@ -946,7 +946,7 @@ export function InPatientDashboard() {
                       wrapperStyle={{ paddingTop: '20px' }}
                       iconType="rect"
                       formatter={(value) => {
-                        const labels: { [key: string]: string } = {
+                        const labels = {
                           'general': 'General Ward',
                           'generalDischarge': 'General Ward',
                           'icu': 'ICU',
