@@ -31,7 +31,7 @@ export default function AccordionSection({
 
   return (
     <section
-      className={`group mb-2 rounded-[5px] border transition-all duration-300 ${
+      className={`group rounded-[5px] mb-1 border transition-all duration-300 ${
         highlight
           ? 'border-[#FF6A00]/30 bg-[#FF6A00]/5' // Swapped highlight to Orange tint
           : isOpen

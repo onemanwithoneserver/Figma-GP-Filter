@@ -282,7 +282,7 @@ export default function SearchPage() {
     const filterControls = (
       <>
         {/* Top Controls Row */}
-        <div className="flex flex-wrap items-stretch gap-2 z-20 relative overflow-visible">
+        <div className="flex flex-wrap items-stretch z-20 relative overflow-visible">
           
           {/* Property Type Toggles */}
           <div className={`${isMobile ? 'grid min-w-0 flex-1 grid-cols-4 gap-2' : 'flex min-w-0 shrink-0 gap-2'}`}>
@@ -313,9 +313,9 @@ export default function SearchPage() {
 
           {/* Desktop Radius Slider */}
           {!isMobile && (
-            <div className="flex flex-1 items-center gap-4 rounded-[5px] border border-[#1E1E1E]/10 bg-white px-4 py-2 shadow-sm z-30 overflow-visible relative">
+            <div className="flex flex-1 items-center gap-4 rounded-[5px]  bg-white px-4 py-2  z-30 overflow-visible relative">
               <span className="text-[13px] font-semibold tracking-wide text-[#1E1E1E]">Radius</span>
-              <div className="flex-1 w-full min-w-[200px]">
+              <div className="flex-1 w-full min-w-50">
                 <RadiusSlider
                   value={activeFilterState.radius}
                   onChange={(value) => updateActiveFilter('radius', value)}
@@ -347,7 +347,7 @@ export default function SearchPage() {
         )}
 
         {/* Filter Grids Area */}
-        <div className="mt-4 rounded-[5px]">
+        <div className="mt-1 rounded-[5px]">
           {ActiveFilters && (
             <ActiveFilters
               filterState={activeFilterState}
@@ -362,10 +362,10 @@ export default function SearchPage() {
         </div>
 
         {/* Footer Action Buttons */}
-        <div className="mt-4 flex items-center gap-2 pt-2 border-t border-[#1E1E1E]/5">
+        <div className=" flex items-center pt-1 ">
           <button
             type="button"
-            className="rounded-[5px] px-2 py-2 text-[13px] font-medium text-[#1E1E1E] transition-all hover:bg-[#1E1E1E]/5 hover:text-[#1E1E1E]"
+            className="rounded-[5px] px-1 py-1 text-[13px] font-medium text-[#1E1E1E] transition-all hover:bg-[#1E1E1E]/5 hover:text-[#1E1E1E]"
           >
             Clear All
           </button>
